@@ -9,6 +9,7 @@ import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.isVisible
 import androidx.recyclerview.widget.LinearLayoutManager
 import br.com.jobflix.R
 import br.com.jobflix.data.model.Episode
@@ -16,7 +17,10 @@ import br.com.jobflix.data.model.Serie
 import br.com.jobflix.databinding.ActDetailsBinding
 import br.com.jobflix.util.*
 import br.com.jobflix.util.Constants.FIRST_PAGE
-import br.com.jobflix.view.adapters.EpisodeAdapter
+import br.com.jobflix.util.extensions.extra
+import br.com.jobflix.util.extensions.loadImageFromUrl
+import br.com.jobflix.util.extensions.setTextFromHtml
+import br.com.jobflix.util.extensions.viewBinding
 import br.com.jobflix.viewModel.details.DetailsViewModel
 import com.google.android.material.snackbar.Snackbar
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -35,33 +39,39 @@ class DetailActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
-        buildUi()
         subscribeUi()
+        buildUi()
         viewModel.loadEpisodes(serie.id, FIRST_PAGE)
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return if (item.itemId == android.R.id.home) {
             onBackPressed()
-            return true
+            true
         } else super.onOptionsItemSelected(item)
+    }
+
+    private fun subscribeUi() {
+        viewModel.onEpisodesResult().observe(this) { onEpisodesResult(it) }
+        viewModel.onError().observe(this) { onError() }
+        viewModel.onLoading().observe(this) { binding.pbLoadingEpisodes.isVisible = it }
     }
 
     private fun buildUi() {
         setupActionBar()
         setupEpisodesList()
         with(binding) {
-            ctbDetails.title = serie.name
-            ivPoster.loadImageFromUrl(serie.image.original)
+            collapseToolbar.title = serie.name
+            ivPoster.loadImageFromUrl(serie.image?.original)
             tvYear.text = serie.premiereYear()
             tvGenres.text = serie.formattedGenres()
-            tvRating.text = getString(R.string.average_rating, serie.rating.average)
             tvDescription.setTextFromHtml(serie.summary)
             tvSchedule.text = getString(
                 R.string.schedule_date_time,
                 serie.scheduleDays(),
-                serie.schedule.time
+                serie.schedule?.time
             )
+            serie.rating?.average?.let {tvRating.text = getString(R.string.average_rating, it) }
         }
     }
 
@@ -70,7 +80,7 @@ class DetailActivity : AppCompatActivity() {
         supportActionBar?.apply {
             setDisplayShowTitleEnabled(false)
             setDisplayHomeAsUpEnabled(true)
-            setHomeAsUpIndicator(R.drawable.ic_arrow_back_24)
+            setHomeAsUpIndicator(R.drawable.ic_arrow_back)
         }
     }
 
@@ -83,30 +93,7 @@ class DetailActivity : AppCompatActivity() {
         }
     }
 
-    private fun subscribeUi() {
-        viewModel.onEpisodesResult().observe(this) { onEpisodesResult(it) }
-        viewModel.onError().observe(this) { onError() }
-        viewModel.onLoading().observe(this) { isLoading ->
-            if (isLoading) showLoading()
-            else hideLoading()
-        }
-    }
-
-    private fun onEpisodesResult(episodesBySeason: Map<Int, List<Episode>>) {
-        setupSeasonSpinner(episodesBySeason)
-    }
-
-    @SuppressLint("NotifyDataSetChanged")
-    private fun updateEpisodesList(episodes: List<Episode>) {
-        episodesList += episodes
-        binding.rvEpisodes.adapter?.notifyDataSetChanged()
-    }
-
-    private fun onError() {
-        Snackbar.make(binding.root, "Error!", Snackbar.LENGTH_SHORT).show() // TODO
-    }
-
-    private fun setupSeasonSpinner(episodes: Map<Int, List<Episode>>) {
+    private fun onEpisodesResult(episodes: Map<Int, List<Episode>>) {
         val seasons = episodes.keys.map { getString(R.string.season_text, it) }
         with(binding.spSeasons) {
             adapter = ArrayAdapter(this@DetailActivity, android.R.layout.simple_spinner_item, seasons).apply {
@@ -125,21 +112,23 @@ class DetailActivity : AppCompatActivity() {
         }
     }
 
+    private fun onError() {
+        Snackbar.make(binding.root, "Error!", Snackbar.LENGTH_SHORT).show() // TODO
+    }
+
+    @SuppressLint("NotifyDataSetChanged")
+    private fun updateEpisodesList(episodes: List<Episode>) {
+        episodesList += episodes
+        binding.rvEpisodes.adapter?.notifyDataSetChanged()
+    }
+
     private fun onEpisodeClicked(episode: Episode) {
-        Snackbar.make(binding.root, episode.name, Snackbar.LENGTH_SHORT).show() // TODO
-    }
-
-    private fun showLoading() = with(binding) {
-        pbLoadingEpisodes.show()
-    }
-
-    private fun hideLoading() = with(binding) {
-        pbLoadingEpisodes.hide()
+        EpisodeBottomSheet.newInstance(episode).show(supportFragmentManager, TAG)
     }
 
     companion object {
         private const val ARG_SERIE = "arg_serie"
-        private const val FIRST_SEASON = 1
+        private const val TAG = "EpisodeBottomSheet"
 
         fun newInstance(context: Context, serie: Serie) = Intent(context, DetailActivity::class.java).apply {
             putExtra(ARG_SERIE, serie)

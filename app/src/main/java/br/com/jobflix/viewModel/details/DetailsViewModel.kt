@@ -15,7 +15,6 @@ class DetailsViewModel(
     private val onEpisodesResult = MutableLiveData<Map<Int, List<Episode>>>()
     private val onError = MutableLiveData<Boolean>()
     private val onLoading = MutableLiveData<Boolean>()
-    val episodesBySeason = mutableMapOf<Int, List<Episode>>()
 
     fun onEpisodesResult(): LiveData<Map<Int, List<Episode>>> = onEpisodesResult
     fun onError(): LiveData<Boolean> = onError

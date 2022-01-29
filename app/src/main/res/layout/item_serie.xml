@@ -23,9 +23,7 @@
         android:layout_marginHorizontal="@dimen/default_dimen"
         android:gravity="top|center_horizontal"
         android:padding="@dimen/x_small_dimen"
-        android:textColor="@color/primaryTextColor"
         app:layout_constraintTop_toBottomOf="@id/ivPoster"
-        tools:layout_editor_absoluteX="16dp"
         tools:text="Supernatural" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

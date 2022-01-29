@@ -8,10 +8,9 @@ import br.com.jobflix.data.model.Serie
 import br.com.jobflix.databinding.ActHomeBinding
 import br.com.jobflix.util.Constants.FIRST_PAGE
 import br.com.jobflix.util.EndlessRecyclerViewScrollListener
-import br.com.jobflix.util.hide
-import br.com.jobflix.util.show
-import br.com.jobflix.util.viewBinding
-import br.com.jobflix.view.adapters.SerieAdapter
+import br.com.jobflix.util.extensions.hide
+import br.com.jobflix.util.extensions.show
+import br.com.jobflix.util.extensions.viewBinding
 import br.com.jobflix.view.details.DetailActivity
 import br.com.jobflix.viewModel.home.HomeViewModel
 import com.google.android.material.snackbar.Snackbar

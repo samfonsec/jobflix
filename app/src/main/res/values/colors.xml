@@ -6,7 +6,7 @@
     <color name="secondaryColor">#FF6F00</color>
     <color name="secondaryLightColor">#FFA040</color>
     <color name="secondaryDarkColor">#C43E00</color>
-    <color name="secondaryColorAlpha">#DDFF6F00</color>
+    <color name="secondaryColorAlpha">#CCFF6F00</color>
 
     <color name="primaryTextColor">#FFFFFF</color>
     <color name="secondaryTextColor">#000000</color>

@@ -4,9 +4,15 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/samfo/AndroidStudioProjects/Jobflix/app/src/main/res/drawable/bg_gradient.xml" value="0.5286458333333334" />
+        <entry key="..\:/Users/samfo/AndroidStudioProjects/Jobflix/app/src/main/res/drawable/bg_placeholder_serie.xml" value="0.5286458333333334" />
+        <entry key="..\:/Users/samfo/AndroidStudioProjects/Jobflix/app/src/main/res/drawable/bg_serie_placeholder.xml" value="0.5427083333333333" />
+        <entry key="..\:/Users/samfo/AndroidStudioProjects/Jobflix/app/src/main/res/drawable/ic_arrow_back_24.xml" value="0.5286458333333334" />
+        <entry key="..\:/Users/samfo/AndroidStudioProjects/Jobflix/app/src/main/res/drawable/ic_arrow_upward_24.xml" value="0.5286458333333334" />
+        <entry key="..\:/Users/samfo/AndroidStudioProjects/Jobflix/app/src/main/res/drawable/ic_favorite_border_24.xml" value="0.5286458333333334" />
         <entry key="..\:/Users/samfo/AndroidStudioProjects/Jobflix/app/src/main/res/drawable/item_episode.xml" value="0.5286458333333334" />
         <entry key="..\:/Users/samfo/AndroidStudioProjects/Jobflix/app/src/main/res/layout/act_details.xml" value="0.5083333333333333" />
         <entry key="..\:/Users/samfo/AndroidStudioProjects/Jobflix/app/src/main/res/layout/act_home.xml" value="0.33" />
+        <entry key="..\:/Users/samfo/AndroidStudioProjects/Jobflix/app/src/main/res/layout/bottom_sheet_ep_detail.xml" value="0.5083333333333333" />
         <entry key="..\:/Users/samfo/AndroidStudioProjects/Jobflix/app/src/main/res/layout/item_episode.xml" value="0.5083333333333333" />
         <entry key="..\:/Users/samfo/AndroidStudioProjects/Jobflix/app/src/main/res/layout/item_serie.xml" value="0.5083333333333333" />
       </map>

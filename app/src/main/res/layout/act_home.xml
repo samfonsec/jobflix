@@ -5,23 +5,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <!--    <TextView-->
-    <!--        android:id="@+id/tvLabelFavorites"-->
-    <!--        android:layout_width="match_parent"-->
-    <!--        android:layout_height="wrap_content"-->
-    <!--        android:layout_margin="@dimen/small_dimen"-->
-    <!--        android:text="@string/label_favorites"-->
-    <!--        android:textSize="@dimen/text_size_medium"-->
-    <!--        app:layout_constraintTop_toTopOf="parent" />-->
-
-    <!--    <androidx.recyclerview.widget.RecyclerView-->
-    <!--        android:id="@+id/rvFavorites"-->
-    <!--        android:layout_width="match_parent"-->
-    <!--        android:layout_height="180dp"-->
-    <!--        android:layout_marginTop="@dimen/small_dimen"-->
-    <!--        app:layout_constraintTop_toBottomOf="@id/tvLabelFavorites" />-->
-
-
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvSeries"
         android:layout_width="match_parent"
@@ -42,15 +25,13 @@
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fabBackToTop"
+        style="@style/Widget.Jobflix.FloatingActionButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/default_dimen"
-        android:backgroundTint="@color/secondaryColorAlpha"
-        android:src="@drawable/ic_arrow_upward_24"
+        android:src="@drawable/ic_arrow_upward"
         android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:rippleColor="?colorPrimary"
         tools:ignore="ContentDescription" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

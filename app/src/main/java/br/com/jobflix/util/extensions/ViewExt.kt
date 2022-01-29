@@ -1,4 +1,4 @@
-package br.com.jobflix.util
+package br.com.jobflix.util.extensions
 
 import android.os.Build
 import android.text.Html
@@ -6,6 +6,7 @@ import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.core.view.isVisible
+import br.com.jobflix.R
 import com.squareup.picasso.Picasso
 
 fun View.show() {
@@ -16,8 +17,8 @@ fun View.hide() {
     isVisible = false
 }
 
-fun ImageView.loadImageFromUrl(url: String) {
-    Picasso.get().load(url).tag(context).into(this)
+fun ImageView.loadImageFromUrl(url: String?) {
+    Picasso.get().load(url).placeholder(R.drawable.bg_placeholder_serie).tag(context).into(this)
 }
 
 fun TextView.setTextFromHtml(html: String) {

@@ -1,4 +1,4 @@
-package br.com.jobflix.util
+package br.com.jobflix.util.extensions
 
 import android.app.Activity
 import android.view.LayoutInflater

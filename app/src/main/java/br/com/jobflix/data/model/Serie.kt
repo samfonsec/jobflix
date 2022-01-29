@@ -10,15 +10,15 @@ data class Serie(
     val genres: List<String>,
     val runtime: Int,
     val premiered: String,
-    val rating: Rating,
-    val image: Image,
+    val rating: Rating?,
+    val image: Image?,
     val summary: String,
-    val schedule: Schedule
+    val schedule: Schedule?
 ) : Parcelable {
 
     fun formattedGenres() = genres.joinToString(" | ")
 
-    fun scheduleDays() = schedule.days.joinToString(", ")
+    fun scheduleDays() = schedule?.days?.joinToString(", ")
 
     fun premiereYear() = premiered.split("-").firstOrNull() ?: premiered
 }
