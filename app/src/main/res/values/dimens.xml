@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="x_small_dimen">4dp</dimen>
+    <dimen name="small_dimen">8dp</dimen>
+    <dimen name="default_dimen">16dp</dimen>
+    <dimen name="medium_dimen">24dp</dimen>
+    <dimen name="big_dimen">32dp</dimen>
+
+    <dimen name="text_size_small">12sp</dimen>
+    <dimen name="text_size_default">14sp</dimen>
+    <dimen name="text_size_medium">18sp</dimen>
+    <dimen name="text_size_big">24sp</dimen>
+</resources>

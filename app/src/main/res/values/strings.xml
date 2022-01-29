@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Jobflix</string>
+
+    <string name="label_favorites">Favorites</string>
+    <string name="label_all_series">All series</string>
+    <string name="label_description">Description</string>
+    <string name="average_rating">Average rating: %.1f</string>
+    <string name="schedule_date_time">On air: %s %s</string>
+    <string name="label_episodes">Episodes</string>
+    <string name="season_text">Season %02d</string>
+</resources>
