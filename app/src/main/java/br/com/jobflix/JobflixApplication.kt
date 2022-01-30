@@ -1,10 +1,7 @@
 package br.com.jobflix
 
 import android.app.Application
-import br.com.jobflix.di.retrofitModule
-import br.com.jobflix.di.searchModule
-import br.com.jobflix.di.seriesModule
-import br.com.jobflix.di.viewModels
+import br.com.jobflix.di.*
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
 import org.koin.core.context.startKoin
@@ -15,7 +12,7 @@ class JobflixApplication : Application() {
     override fun onCreate() {
         super.onCreate()
         startKoin {
-            androidLogger(Level.DEBUG)
+            androidLogger(if (BuildConfig.DEBUG) Level.ERROR else Level.NONE)
             androidContext(this@JobflixApplication)
             modules(mutableListOf(retrofitModule, seriesModule, searchModule, viewModels))
         }

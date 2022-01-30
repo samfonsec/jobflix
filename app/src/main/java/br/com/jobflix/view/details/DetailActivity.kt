@@ -71,6 +71,7 @@ class DetailActivity : AppCompatActivity() {
                 serie.schedule?.time
             )
             serie.rating?.average?.let { tvRating.text = getString(R.string.average_rating, it) }
+            ivFavorite.setOnClickListener { onFavoriteClicked() }
         }
     }
 
@@ -131,6 +132,10 @@ class DetailActivity : AppCompatActivity() {
 
     private fun onEpisodeClicked(episode: Episode) {
         EpisodeBottomSheet.newInstance(episode).show(supportFragmentManager, TAG)
+    }
+
+    private fun onFavoriteClicked() {
+        viewModel.saveAsFavorite(serie)
     }
 
     private fun TextView.seasonNumber() = text?.split(" ")?.get(1)?.toInt() ?: 0

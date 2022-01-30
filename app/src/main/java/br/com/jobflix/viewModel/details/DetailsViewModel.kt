@@ -2,8 +2,9 @@ package br.com.jobflix.viewModel.details
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import br.com.jobflix.data.api.ApiResult
+import br.com.jobflix.data.api.ResultStatus
 import br.com.jobflix.data.model.Episode
+import br.com.jobflix.data.model.Serie
 import br.com.jobflix.data.repository.SeriesRepository
 import br.com.jobflix.viewModel.base.BaseViewModel
 import kotlinx.coroutines.launch
@@ -25,13 +26,19 @@ class DetailsViewModel(
         launch {
             seriesRepository.getEpisodes(serieId).let { result ->
                 when (result) {
-                    is ApiResult.Success -> {
+                    is ResultStatus.Success -> {
                         onEpisodesResult.postValue(result.data.groupBy { it.season })
                     }
-                    is ApiResult.Error -> onError.postValue(true)
+                    is ResultStatus.Error -> onError.postValue(true)
                 }
             }
             onLoading.postValue(false)
+        }
+    }
+
+    fun saveAsFavorite(serie: Serie) {
+        launch {
+            seriesRepository.saveFavorite(serie)
         }
     }
 }

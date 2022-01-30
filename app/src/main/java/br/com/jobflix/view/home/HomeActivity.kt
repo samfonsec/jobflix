@@ -2,6 +2,7 @@ package br.com.jobflix.view.home
 
 import android.annotation.SuppressLint
 import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
 import androidx.core.view.isVisible
@@ -17,6 +18,7 @@ import br.com.jobflix.util.extensions.showErrorSnackbar
 import br.com.jobflix.util.extensions.viewBinding
 import br.com.jobflix.view.details.DetailActivity
 import br.com.jobflix.viewModel.home.HomeViewModel
+import com.google.android.material.snackbar.Snackbar
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class HomeActivity : AppCompatActivity() {
@@ -62,6 +64,11 @@ class HomeActivity : AppCompatActivity() {
         loadSeries()
     }
 
+    override fun onResume() {
+        super.onResume()
+        viewModel.getFavorites()
+    }
+
     private fun buildUi() {
         setupList()
         binding.fabBackToTop.setOnClickListener { backToTop() }
@@ -100,6 +107,12 @@ class HomeActivity : AppCompatActivity() {
         viewModel.onError().observe(this) { onError() }
         viewModel.onSearch().observe(this) { updateList(it) }
         viewModel.onLoading().observe(this) { binding.pbLoading.isVisible = it }
+        viewModel.onFavoritesResult().observe(this) {
+
+        }
+        viewModel.onFavoritesError().observe(this) {
+
+        }
     }
 
     private fun onSeriesResult(series: List<Serie>) {

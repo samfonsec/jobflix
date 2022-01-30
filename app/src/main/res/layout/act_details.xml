@@ -64,6 +64,17 @@
                 app:layout_constraintTop_toTopOf="parent"
                 tools:text="2020" />
 
+            <ImageView
+                android:id="@+id/ivFavorite"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/x_small_dimen"
+                android:layout_marginEnd="@dimen/default_dimen"
+                android:contentDescription="@string/action_favorite"
+                android:src="@drawable/ic_favorite_border"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
             <TextView
                 android:id="@+id/tvGenres"
                 android:layout_width="wrap_content"

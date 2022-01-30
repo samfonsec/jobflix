@@ -1,12 +1,18 @@
 package br.com.jobflix.data.repository
 
 import br.com.jobflix.data.model.Serie
-import br.com.jobflix.data.api.ApiResult
+import br.com.jobflix.data.api.ResultStatus
 import br.com.jobflix.data.model.Episode
 
 interface SeriesRepository {
 
-    suspend fun getSeries(page: Int): ApiResult<List<Serie>>
+    suspend fun getSeries(page: Int): ResultStatus<List<Serie>>
 
-    suspend fun getEpisodes(serieId: Int): ApiResult<List<Episode>>
+    suspend fun getEpisodes(serieId: Int): ResultStatus<List<Episode>>
+
+    suspend fun getFavorites(): ResultStatus<List<Serie>>
+
+    suspend fun saveFavorite(serie: Serie)
+
+    suspend fun removeFavorite(serie: Serie)
 }
