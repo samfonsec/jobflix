@@ -49,6 +49,9 @@ dependencies {
     // Google Material
     implementation 'com.google.android.material:material:1.5.0'
 
+    // Logging Interceptor
+    implementation "com.squareup.okhttp3:logging-interceptor:4.9.1"
+
     // Retrofit
     implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
     implementation "com.squareup.retrofit2:converter-gson:$retrofit_version"

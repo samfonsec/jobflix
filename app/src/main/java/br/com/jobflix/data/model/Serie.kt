@@ -8,11 +8,10 @@ data class Serie(
     val id: Int,
     val name: String,
     val genres: List<String>,
-    val runtime: Int,
-    val premiered: String,
+    val premiered: String?,
     val rating: Rating?,
     val image: Image?,
-    val summary: String,
+    val summary: String?,
     val schedule: Schedule?
 ) : Parcelable {
 
@@ -20,5 +19,5 @@ data class Serie(
 
     fun scheduleDays() = schedule?.days?.joinToString(", ")
 
-    fun premiereYear() = premiered.split("-").firstOrNull() ?: premiered
+    fun premiereYear() = premiered?.split("-")?.firstOrNull() ?: premiered
 }

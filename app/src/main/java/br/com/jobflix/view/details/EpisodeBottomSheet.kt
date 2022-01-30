@@ -27,7 +27,7 @@ class EpisodeBottomSheet : BottomSheetDialogFragment() {
             tvEpName.text = episode.name
             tvEpNumber.text = episode.formattedNumber()
             tvEpRuntime.text = episode.formattedRuntime()
-            tvEpSummary.setTextFromHtml(episode.summary)
+            episode.summary?.let { tvEpSummary.setTextFromHtml(it) }
             fabClose.setOnClickListener { dismiss() }
         }
     }

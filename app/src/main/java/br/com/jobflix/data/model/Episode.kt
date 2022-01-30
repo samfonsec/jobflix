@@ -13,7 +13,7 @@ data class Episode(
     val number: Int,
     val runtime: Int,
     val image: Image?,
-    val summary: String,
+    val summary: String?,
 ) : Parcelable {
 
     fun formattedNumber() = String.format(SEASON_EPISODE_FORMAT, season, number)

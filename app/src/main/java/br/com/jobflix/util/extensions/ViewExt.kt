@@ -1,8 +1,10 @@
 package br.com.jobflix.util.extensions
 
+import android.content.Context
 import android.os.Build
 import android.text.Html
 import android.view.View
+import android.view.inputmethod.InputMethodManager
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.core.view.isVisible
@@ -28,4 +30,9 @@ fun TextView.setTextFromHtml(html: String) {
         @Suppress("DEPRECATION")
         Html.fromHtml(html).trim()
     }
+}
+
+fun View.hideSoftKeyboard() {
+    val imm = context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+    imm.hideSoftInputFromWindow(windowToken, 0)
 }

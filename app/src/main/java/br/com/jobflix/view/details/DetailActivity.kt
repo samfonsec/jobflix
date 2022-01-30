@@ -35,7 +35,6 @@ class DetailActivity : AppCompatActivity() {
 
     private val episodesList: ArrayList<Episode> = arrayListOf()
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
@@ -65,13 +64,13 @@ class DetailActivity : AppCompatActivity() {
             ivPoster.loadImageFromUrl(serie.image?.original)
             tvYear.text = serie.premiereYear()
             tvGenres.text = serie.formattedGenres()
-            tvDescription.setTextFromHtml(serie.summary)
+            serie.summary?.let { tvDescription.setTextFromHtml(it) }
             tvSchedule.text = getString(
                 R.string.schedule_date_time,
                 serie.scheduleDays(),
                 serie.schedule?.time
             )
-            serie.rating?.average?.let {tvRating.text = getString(R.string.average_rating, it) }
+            serie.rating?.average?.let { tvRating.text = getString(R.string.average_rating, it) }
         }
     }
 
@@ -127,8 +126,8 @@ class DetailActivity : AppCompatActivity() {
     }
 
     companion object {
-        private const val ARG_SERIE = "arg_serie"
         private const val TAG = "EpisodeBottomSheet"
+        private const val ARG_SERIE = "arg_serie"
 
         fun newInstance(context: Context, serie: Serie) = Intent(context, DetailActivity::class.java).apply {
             putExtra(ARG_SERIE, serie)
