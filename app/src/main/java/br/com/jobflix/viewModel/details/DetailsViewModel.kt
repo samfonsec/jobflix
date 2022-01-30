@@ -20,10 +20,10 @@ class DetailsViewModel(
     fun onError(): LiveData<Boolean> = onError
     fun onLoading(): LiveData<Boolean> = onLoading
 
-    fun loadEpisodes(serieId: Int, page: Int) {
+    fun loadEpisodes(serieId: Int) {
         onLoading.postValue(true)
         launch {
-            seriesRepository.getEpisodes(serieId, page).let { result ->
+            seriesRepository.getEpisodes(serieId).let { result ->
                 when (result) {
                     is ApiResult.Success -> {
                         onEpisodesResult.postValue(result.data.groupBy { it.season })

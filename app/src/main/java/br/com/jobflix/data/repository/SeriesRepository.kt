@@ -8,5 +8,5 @@ interface SeriesRepository {
 
     suspend fun getSeries(page: Int): ApiResult<List<Serie>>
 
-    suspend fun getEpisodes(serieId: Int, page: Int): ApiResult<List<Episode>>
+    suspend fun getEpisodes(serieId: Int): ApiResult<List<Episode>>
 }

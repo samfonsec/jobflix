@@ -11,11 +11,12 @@ import br.com.jobflix.data.model.Serie
 import br.com.jobflix.databinding.ActHomeBinding
 import br.com.jobflix.util.Constants.FIRST_PAGE
 import br.com.jobflix.util.EndlessRecyclerViewScrollListener
+import br.com.jobflix.util.extensions.hide
 import br.com.jobflix.util.extensions.show
+import br.com.jobflix.util.extensions.showErrorSnackbar
 import br.com.jobflix.util.extensions.viewBinding
 import br.com.jobflix.view.details.DetailActivity
 import br.com.jobflix.viewModel.home.HomeViewModel
-import com.google.android.material.snackbar.Snackbar
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class HomeActivity : AppCompatActivity() {
@@ -24,7 +25,7 @@ class HomeActivity : AppCompatActivity() {
 
     private val viewModel: HomeViewModel by viewModel()
 
-    private var lastLoadedPage = Int.MAX_VALUE
+    private var lastLoadedPage = FIRST_PAGE
 
     private val gridLayoutManager by lazy { GridLayoutManager(this@HomeActivity, GRID_SPAN_COUNT) }
 
@@ -35,7 +36,7 @@ class HomeActivity : AppCompatActivity() {
             override fun onLoadMore(page: Int, totalItemsCount: Int, view: RecyclerView) {
                 binding.rvSeries.removeOnScrollListener(this)
                 lastLoadedPage = page
-                loadSeries(page)
+                loadSeries()
             }
         }
     }
@@ -58,7 +59,7 @@ class HomeActivity : AppCompatActivity() {
         setContentView(binding.root)
         buildUi()
         subscribeUi()
-        loadSeries(FIRST_PAGE)
+        loadSeries()
     }
 
     private fun buildUi() {
@@ -85,8 +86,8 @@ class HomeActivity : AppCompatActivity() {
         addListScrollListeners()
     }
 
-    private fun loadSeries(page: Int) {
-        viewModel.loadSeries(page)
+    private fun loadSeries() {
+        viewModel.loadSeries(lastLoadedPage)
     }
 
     private fun searchSeries(query: String) {
@@ -118,12 +119,25 @@ class HomeActivity : AppCompatActivity() {
     }
 
     private fun onError() {
-        Snackbar.make(binding.root, "Error!", Snackbar.LENGTH_SHORT).show() // TODO
+        if (lastLoadedPage == FIRST_PAGE)
+            showErrorView()
+        else
+            showErrorSnackbar(binding.fabBackToTop) { loadSeries() }
+    }
+
+    private fun showErrorView() {
+        with(binding.errorView) {
+            root.show()
+            btError.setOnClickListener {
+                loadSeries()
+                root.hide()
+            }
+        }
     }
 
     private fun backToTop() {
-        binding.rvSeries.scrollToPosition(0)
         showFirstPage()
+        binding.rvSeries.scrollToPosition(0)
     }
 
     fun showFirstPage() {

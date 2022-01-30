@@ -12,7 +12,7 @@ interface SeriesApi {
     suspend fun getShows(@Query("page") page: Int): List<Serie>
 
     @GET(EPISODES_API)
-    suspend fun getEpisodes(@Path("id") serieId: Int, @Query("page") page: Int): List<Episode>
+    suspend fun getEpisodes(@Path("id") serieId: Int): List<Episode>
 
     companion object {
         private const val SHOWS_API = "shows"

@@ -8,6 +8,7 @@ import android.view.MenuItem
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -16,13 +17,8 @@ import br.com.jobflix.data.model.Episode
 import br.com.jobflix.data.model.Serie
 import br.com.jobflix.databinding.ActDetailsBinding
 import br.com.jobflix.util.*
-import br.com.jobflix.util.Constants.FIRST_PAGE
-import br.com.jobflix.util.extensions.extra
-import br.com.jobflix.util.extensions.loadImageFromUrl
-import br.com.jobflix.util.extensions.setTextFromHtml
-import br.com.jobflix.util.extensions.viewBinding
+import br.com.jobflix.util.extensions.*
 import br.com.jobflix.viewModel.details.DetailsViewModel
-import com.google.android.material.snackbar.Snackbar
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class DetailActivity : AppCompatActivity() {
@@ -40,7 +36,7 @@ class DetailActivity : AppCompatActivity() {
         setContentView(binding.root)
         subscribeUi()
         buildUi()
-        viewModel.loadEpisodes(serie.id, FIRST_PAGE)
+        loadEpisodes()
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -48,6 +44,10 @@ class DetailActivity : AppCompatActivity() {
             onBackPressed()
             true
         } else super.onOptionsItemSelected(item)
+    }
+
+    private fun loadEpisodes() {
+        viewModel.loadEpisodes(serie.id)
     }
 
     private fun subscribeUi() {
@@ -95,12 +95,13 @@ class DetailActivity : AppCompatActivity() {
     private fun onEpisodesResult(episodes: Map<Int, List<Episode>>) {
         val seasons = episodes.keys.map { getString(R.string.season_text, it) }
         with(binding.spSeasons) {
+            show()
             adapter = ArrayAdapter(this@DetailActivity, android.R.layout.simple_spinner_item, seasons).apply {
                 setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
             }
             onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
                 override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-                    val selectedSeason = position + 1
+                    val selectedSeason = (view as? TextView)?.seasonNumber()
                     episodesList.clear()
                     episodes[selectedSeason]?.let { updateEpisodesList(it) }
                     binding.rvEpisodes.scrollToPosition(0)
@@ -112,7 +113,14 @@ class DetailActivity : AppCompatActivity() {
     }
 
     private fun onError() {
-        Snackbar.make(binding.root, "Error!", Snackbar.LENGTH_SHORT).show() // TODO
+        with(binding.errorView) {
+            root.show()
+            btError.setOnClickListener {
+                loadEpisodes()
+                root.hide()
+            }
+        }
+        binding.spSeasons.hide()
     }
 
     @SuppressLint("NotifyDataSetChanged")
@@ -124,6 +132,8 @@ class DetailActivity : AppCompatActivity() {
     private fun onEpisodeClicked(episode: Episode) {
         EpisodeBottomSheet.newInstance(episode).show(supportFragmentManager, TAG)
     }
+
+    private fun TextView.seasonNumber() = text?.split(" ")?.get(1)?.toInt() ?: 0
 
     companion object {
         private const val TAG = "EpisodeBottomSheet"

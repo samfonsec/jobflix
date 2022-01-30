@@ -16,9 +16,9 @@ class SeriesDataSource(private val api: SeriesApi) : SeriesRepository {
         }
     }
 
-    override suspend fun getEpisodes(serieId: Int, page: Int): ApiResult<List<Episode>> {
+    override suspend fun getEpisodes(serieId: Int): ApiResult<List<Episode>> {
         return try {
-            ApiResult.Success(api.getEpisodes(serieId, page))
+            ApiResult.Success(api.getEpisodes(serieId))
         } catch (e: Exception) {
             ApiResult.Error(e)
         }

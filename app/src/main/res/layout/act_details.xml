@@ -137,18 +137,10 @@
                 android:layout_height="wrap_content"
                 android:popupBackground="@color/primaryLightColor"
                 android:spinnerMode="dropdown"
+                android:visibility="gone"
                 app:layout_constraintBottom_toBottomOf="@id/tvLabelEpisodes"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="@id/tvLabelEpisodes" />
-
-            <ProgressBar
-                android:id="@+id/pbLoadingEpisodes"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tvLabelEpisodes" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rvEpisodes"
@@ -159,6 +151,25 @@
                 android:clipToPadding="false"
                 android:paddingHorizontal="@dimen/default_dimen"
                 app:layout_constraintTop_toBottomOf="@id/tvLabelEpisodes" />
+
+            <include
+                android:id="@+id/errorView"
+                layout="@layout/error_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tvLabelEpisodes" />
+
+            <ProgressBar
+                android:id="@+id/pbLoadingEpisodes"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tvLabelEpisodes" />
+
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.core.widget.NestedScrollView>

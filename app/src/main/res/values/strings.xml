@@ -10,4 +10,8 @@
     <string name="season_text">Season %02d</string>
     <string name="action_favorite">Favorite</string>
     <string name="menu_search">Search</string>
+
+    <string name="error_short_message">Something went wrong!</string>
+    <string name="error_message">Something went wrong!\nPlease try again.</string>
+    <string name="error_action">Try again</string>
 </resources>
