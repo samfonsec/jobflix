@@ -1,13 +1,17 @@
 package br.com.jobflix.di
 
+import br.com.jobflix.data.api.PeopleApi
 import br.com.jobflix.data.api.SearchApi
 import br.com.jobflix.data.api.SeriesApi
+import br.com.jobflix.data.dataSource.PeopleDataSource
 import br.com.jobflix.data.dataSource.SearchDataSource
 import br.com.jobflix.data.dataSource.SeriesDataSource
 import br.com.jobflix.data.database.FavoriteDatabase
+import br.com.jobflix.data.repository.PeopleRepository
 import br.com.jobflix.data.repository.SearchRepository
 import br.com.jobflix.data.repository.SeriesRepository
-import br.com.jobflix.viewModel.details.DetailsViewModel
+import br.com.jobflix.viewModel.details.PeopleDetailsViewModel
+import br.com.jobflix.viewModel.details.SerieDetailsViewModel
 import br.com.jobflix.viewModel.main.FavoritesViewModel
 import br.com.jobflix.viewModel.main.HomeViewModel
 import br.com.jobflix.viewModel.main.PeopleSearchViewModel
@@ -34,11 +38,17 @@ val searchModule = module {
     single<SearchRepository> { SearchDataSource(get()) }
 }
 
+val peopleModule = module {
+    single<PeopleApi> { getRetrofit().create(PeopleApi::class.java) }
+    single<PeopleRepository> { PeopleDataSource(get()) }
+}
+
 val viewModels = module {
     viewModel { HomeViewModel(get(), get()) }
     viewModel { FavoritesViewModel(get()) }
     viewModel { PeopleSearchViewModel(get()) }
-    viewModel { DetailsViewModel(get()) }
+    viewModel { SerieDetailsViewModel(get()) }
+    viewModel { PeopleDetailsViewModel(get()) }
 }
 
 val retrofitModule = module {

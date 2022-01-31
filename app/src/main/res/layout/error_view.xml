@@ -19,7 +19,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/btError"
+        android:id="@+id/btTryAgain"
         android:layout_width="wrap_content"
         android:layout_height="40dp"
         android:layout_marginTop="@dimen/small_dimen"

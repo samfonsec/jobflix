@@ -4,6 +4,7 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/samfo/AndroidStudioProjects/Jobflix/app/src/main/res/drawable/bg_gradient.xml" value="0.5286458333333334" />
+        <entry key="..\:/Users/samfo/AndroidStudioProjects/Jobflix/app/src/main/res/drawable/bg_placeholder_people.xml" value="0.5286458333333334" />
         <entry key="..\:/Users/samfo/AndroidStudioProjects/Jobflix/app/src/main/res/drawable/bg_placeholder_serie.xml" value="0.5286458333333334" />
         <entry key="..\:/Users/samfo/AndroidStudioProjects/Jobflix/app/src/main/res/drawable/bg_serie_placeholder.xml" value="0.5427083333333333" />
         <entry key="..\:/Users/samfo/AndroidStudioProjects/Jobflix/app/src/main/res/drawable/ic_arrow_back_24.xml" value="0.5286458333333334" />
@@ -15,19 +16,24 @@
         <entry key="..\:/Users/samfo/AndroidStudioProjects/Jobflix/app/src/main/res/drawable/ic_favorite_border_24.xml" value="0.5286458333333334" />
         <entry key="..\:/Users/samfo/AndroidStudioProjects/Jobflix/app/src/main/res/drawable/ic_favorite_selector.xml" value="0.5286458333333334" />
         <entry key="..\:/Users/samfo/AndroidStudioProjects/Jobflix/app/src/main/res/drawable/ic_home.xml" value="0.5286458333333334" />
+        <entry key="..\:/Users/samfo/AndroidStudioProjects/Jobflix/app/src/main/res/drawable/ic_movie_creation.xml" value="0.5286458333333334" />
         <entry key="..\:/Users/samfo/AndroidStudioProjects/Jobflix/app/src/main/res/drawable/ic_people_search.xml" value="0.5286458333333334" />
+        <entry key="..\:/Users/samfo/AndroidStudioProjects/Jobflix/app/src/main/res/drawable/ic_person.xml" value="0.5286458333333334" />
         <entry key="..\:/Users/samfo/AndroidStudioProjects/Jobflix/app/src/main/res/drawable/ic_remove_favorite.xml" value="0.5286458333333334" />
         <entry key="..\:/Users/samfo/AndroidStudioProjects/Jobflix/app/src/main/res/drawable/ic_search.xml" value="0.5286458333333334" />
         <entry key="..\:/Users/samfo/AndroidStudioProjects/Jobflix/app/src/main/res/drawable/ic_star.xml" value="0.5286458333333334" />
         <entry key="..\:/Users/samfo/AndroidStudioProjects/Jobflix/app/src/main/res/drawable/item_episode.xml" value="0.5286458333333334" />
         <entry key="..\:/Users/samfo/AndroidStudioProjects/Jobflix/app/src/main/res/layout/act_details.xml" value="0.5" />
         <entry key="..\:/Users/samfo/AndroidStudioProjects/Jobflix/app/src/main/res/layout/act_home.xml" value="0.5083333333333333" />
+        <entry key="..\:/Users/samfo/AndroidStudioProjects/Jobflix/app/src/main/res/layout/act_people_details.xml" value="0.5083333333333333" />
         <entry key="..\:/Users/samfo/AndroidStudioProjects/Jobflix/app/src/main/res/layout/bottom_sheet_ep_detail.xml" value="0.5083333333333333" />
         <entry key="..\:/Users/samfo/AndroidStudioProjects/Jobflix/app/src/main/res/layout/error_view.xml" value="0.5083333333333333" />
         <entry key="..\:/Users/samfo/AndroidStudioProjects/Jobflix/app/src/main/res/layout/frag_favorites.xml" value="0.5083333333333333" />
         <entry key="..\:/Users/samfo/AndroidStudioProjects/Jobflix/app/src/main/res/layout/frag_home.xml" value="0.5083333333333333" />
+        <entry key="..\:/Users/samfo/AndroidStudioProjects/Jobflix/app/src/main/res/layout/frag_people_search.xml" value="0.5083333333333333" />
         <entry key="..\:/Users/samfo/AndroidStudioProjects/Jobflix/app/src/main/res/layout/item_episode.xml" value="0.5083333333333333" />
         <entry key="..\:/Users/samfo/AndroidStudioProjects/Jobflix/app/src/main/res/layout/item_favorite.xml" value="0.5083333333333333" />
+        <entry key="..\:/Users/samfo/AndroidStudioProjects/Jobflix/app/src/main/res/layout/item_people.xml" value="0.5223958333333333" />
         <entry key="..\:/Users/samfo/AndroidStudioProjects/Jobflix/app/src/main/res/layout/item_serie.xml" value="0.5083333333333333" />
         <entry key="..\:/Users/samfo/AndroidStudioProjects/Jobflix/app/src/main/res/menu/bottom_nav_menu.xml" value="0.5083333333333333" />
         <entry key="..\:/Users/samfo/AndroidStudioProjects/Jobflix/app/src/main/res/menu/bottom_navigation_menu.xml" value="0.5083333333333333" />

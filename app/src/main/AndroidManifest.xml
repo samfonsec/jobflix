@@ -30,6 +30,10 @@
             android:screenOrientation="portrait"
             android:theme="@style/Theme.Jobflix.TransparentStatusBar" />
 
+        <activity
+            android:name=".view.details.PeopleDetailActivity"
+            android:screenOrientation="portrait" />
+
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />

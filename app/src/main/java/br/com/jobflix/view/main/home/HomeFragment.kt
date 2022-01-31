@@ -132,7 +132,7 @@ class HomeFragment : BaseFragment() {
     private fun showErrorView() {
         with(binding.errorView) {
             root.show()
-            btError.setOnClickListener {
+            btTryAgain.setOnClickListener {
                 loadSeries()
                 root.hide()
             }

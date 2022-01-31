@@ -62,11 +62,15 @@ class MainActivity : AppCompatActivity() {
         fragmentsList[position].takeIf { it != currentFragment }?.let {
             supportFragmentManager.beginTransaction().hide(currentFragment).show(it).commit()
             currentFragment = it
-
-            if (it is FavoritesFragment)
-                it.loadFavorites()
+            onFragmentChanged(it)
         }
 
+    }
+
+    private fun onFragmentChanged(fragment: Fragment) {
+        when (fragment) {
+            is FavoritesFragment -> fragment.loadFavorites()
+        }
     }
 
     companion object {

@@ -19,8 +19,8 @@ fun View.hide() {
     isVisible = false
 }
 
-fun ImageView.loadImageFromUrl(url: String?) {
-    Picasso.get().load(url).placeholder(R.drawable.bg_placeholder_serie).tag(context).into(this)
+fun ImageView.loadImageFromUrl(url: String?, placeHolderResId: Int = R.drawable.bg_placeholder_serie) {
+    Picasso.get().load(url).placeholder(placeHolderResId).tag(context).into(this)
 }
 
 fun TextView.setTextFromHtml(html: String) {
@@ -32,7 +32,16 @@ fun TextView.setTextFromHtml(html: String) {
     }
 }
 
+fun View.showSoftKeyboard() {
+    postDelayed({
+        requestFocus()
+        val imm = context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        imm.showSoftInput(this, InputMethodManager.SHOW_IMPLICIT)
+    }, 200)
+}
+
 fun View.hideSoftKeyboard() {
     val imm = context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
     imm.hideSoftInputFromWindow(windowToken, 0)
 }
+

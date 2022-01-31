@@ -65,7 +65,7 @@ class FavoritesFragment : BaseFragment() {
     private fun onError() {
         with(binding.errorView) {
             root.show()
-            btError.setOnClickListener {
+            btTryAgain.setOnClickListener {
                 loadFavorites()
                 root.hide()
             }

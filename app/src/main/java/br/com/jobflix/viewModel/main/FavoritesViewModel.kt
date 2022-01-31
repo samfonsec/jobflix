@@ -25,9 +25,7 @@ class FavoritesViewModel(
             onLoading.postValue(true)
             seriesRepository.getFavorites().let { result ->
                 when (result) {
-                    is ResultStatus.Success -> {
-                        onFavoritesResult.postValue(result.data.sortedBy { it.name })
-                    }
+                    is ResultStatus.Success -> onFavoritesResult.postValue(result.data)
                     is ResultStatus.Error -> onError.postValue(true)
                 }
                 onLoading.postValue(false)

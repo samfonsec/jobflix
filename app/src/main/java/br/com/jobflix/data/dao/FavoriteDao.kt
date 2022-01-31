@@ -6,7 +6,7 @@ import br.com.jobflix.data.model.Serie
 @Dao
 interface FavoriteDao {
 
-    @Query("SELECT * FROM table_favorites ORDER BY id ASC")
+    @Query("SELECT * FROM table_favorites ORDER BY name ASC")
     suspend fun getFavoriteSeries(): List<Serie>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
@@ -17,4 +17,8 @@ interface FavoriteDao {
 
     @Query("SELECT EXISTS(SELECT * FROM table_favorites WHERE id=(:serieId))")
     suspend fun isFavorite(serieId: Int): Boolean
+
+    companion object {
+
+    }
 }

@@ -14,7 +14,7 @@ class JobflixApplication : Application() {
         startKoin {
             androidLogger(if (BuildConfig.DEBUG) Level.ERROR else Level.NONE)
             androidContext(this@JobflixApplication)
-            modules(mutableListOf(retrofitModule, seriesModule, searchModule, viewModels))
+            modules(mutableListOf(retrofitModule, seriesModule, searchModule, peopleModule, viewModels))
         }
     }
 }

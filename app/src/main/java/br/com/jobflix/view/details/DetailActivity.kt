@@ -18,14 +18,14 @@ import br.com.jobflix.data.model.Serie
 import br.com.jobflix.databinding.ActDetailsBinding
 import br.com.jobflix.util.*
 import br.com.jobflix.util.extensions.*
-import br.com.jobflix.viewModel.details.DetailsViewModel
+import br.com.jobflix.viewModel.details.SerieDetailsViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class DetailActivity : AppCompatActivity() {
 
     private val binding by viewBinding(ActDetailsBinding::inflate)
 
-    private val viewModel: DetailsViewModel by viewModel()
+    private val viewModel: SerieDetailsViewModel by viewModel()
 
     private val serie by extra<Serie>(ARG_SERIE)
 
@@ -120,7 +120,7 @@ class DetailActivity : AppCompatActivity() {
     private fun onError() {
         with(binding.errorView) {
             root.show()
-            btError.setOnClickListener {
+            btTryAgain.setOnClickListener {
                 loadEpisodes()
                 root.hide()
             }

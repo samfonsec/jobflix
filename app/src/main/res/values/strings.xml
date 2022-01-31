@@ -14,4 +14,10 @@
     <string name="error_message">Something went wrong!\nPlease try again.</string>
     <string name="error_action">Try again</string>
     <string name="favorite_empty_state">Your favorite list is empty.\n</string>
+    <string name="series_search_hint">Search for series…</string>
+    <string name="people_search_hint">Search for people…</string>
+    <string name="empty_list_text">No results found</string>
+    <string name="label_people_series">Series</string>
+    <string name="birthdate_age_format">%s (age %d)</string>
+
 </resources>

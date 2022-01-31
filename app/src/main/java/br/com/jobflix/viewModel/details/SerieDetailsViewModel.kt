@@ -9,7 +9,7 @@ import br.com.jobflix.data.repository.SeriesRepository
 import br.com.jobflix.viewModel.base.BaseViewModel
 import kotlinx.coroutines.launch
 
-class DetailsViewModel(
+class SerieDetailsViewModel(
     private val seriesRepository: SeriesRepository
 ) : BaseViewModel() {
 
@@ -28,9 +28,7 @@ class DetailsViewModel(
         launch {
             seriesRepository.getEpisodes(serieId).let { result ->
                 when (result) {
-                    is ResultStatus.Success -> {
-                        onEpisodesResult.postValue(result.data.groupBy { it.season })
-                    }
+                    is ResultStatus.Success -> onEpisodesResult.postValue(result.data.groupBy { it.season })
                     is ResultStatus.Error -> onError.postValue(true)
                 }
             }
