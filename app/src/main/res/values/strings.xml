@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Jobflix</string>
+    <string name="app_name">Jobsity Play</string>
 
     <string name="menu_home">Home</string>
     <string name="menu_favorites">Favorites</string>
@@ -9,7 +9,6 @@
     <string name="schedule_date_time">On air: %s %s</string>
     <string name="label_episodes">Episodes</string>
     <string name="season_text">Season %02d</string>
-
     <string name="error_short_message">Something went wrong!</string>
     <string name="error_message">Something went wrong!\nPlease try again.</string>
     <string name="error_action">Try again</string>
@@ -19,5 +18,5 @@
     <string name="empty_list_text">No results found</string>
     <string name="label_people_series">Series</string>
     <string name="birthdate_age_format">%s (age %d)</string>
-
+    <string name="death_date_format">Died: %s</string>
 </resources>

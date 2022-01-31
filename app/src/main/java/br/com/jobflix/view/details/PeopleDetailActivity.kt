@@ -50,10 +50,16 @@ class PeopleDetailActivity : AppCompatActivity() {
             ivPeople.loadImageFromUrl(people.image?.original, R.drawable.bg_placeholder_people)
             tvName.text = people.name
             people.birthday?.toDate()?.let {
-                tvBirthdate.text = getString(R.string.birthdate_age_format, it.format(), it.age())
+                tvBirthdate.text = if (people.deathday == null)
+                    getString(R.string.birthdate_age_format, it.format(), it.age())
+                else
+                    it.format()
             }
             people.country?.name?.let {
                 tvCountry.text = it
+            }
+            people.deathday?.toDate()?.let {
+                tvDeathDate.text = getString(R.string.death_date_format, it.format())
             }
         }
     }
@@ -85,6 +91,9 @@ class PeopleDetailActivity : AppCompatActivity() {
     private fun onPeopleSeriesResult(series: List<Serie>) {
         seriesList += series
         binding.rvSeries.adapter?.notifyItemRangeInserted(0, seriesList.size)
+
+        if (seriesList.isNotEmpty())
+            binding.tvLabelSeries.show()
     }
 
     private fun onItemClicked(serie: Serie) {

@@ -8,6 +8,7 @@ data class People(
     val id: Int,
     val name: String,
     val birthday: String?,
+    val deathday: String?,
     val country: Country?,
     val image: Image?
 ) : Parcelable
