@@ -51,4 +51,12 @@ class SeriesDataSource(
             e.printStackTrace()
         }
     }
+
+    override suspend fun isFavorite(serieId: Int): ResultStatus<Boolean> {
+        return try {
+            ResultStatus.Success(dao.isFavorite(serieId))
+        } catch (e: Exception) {
+            ResultStatus.Error(e)
+        }
+    }
 }

@@ -4,10 +4,15 @@
     <color name="primaryLightColor">#212121</color>
     <color name="primaryDarkColor">#000000</color>
     <color name="secondaryColor">#FF6F00</color>
-    <color name="secondaryLightColor">#FFA040</color>
+    <color name="secondaryLightColor">#FFC107</color>
     <color name="secondaryDarkColor">#C43E00</color>
     <color name="secondaryColorAlpha">#CCFF6F00</color>
+    <color name="primaryLightColorAlpha">#70212121</color>
 
     <color name="primaryTextColor">#FFFFFF</color>
     <color name="secondaryTextColor">#000000</color>
+
+    <color name="bottomNavUnselectedColor">#C5C5C5</color>
+    <color name="bottomNavSelectedColor">@color/secondaryColor</color>
+
 </resources>

@@ -1,37 +1,36 @@
-package br.com.jobflix.view.home
+package br.com.jobflix.view.main.home
 
 import android.annotation.SuppressLint
 import android.os.Bundle
-import android.util.Log
-import androidx.appcompat.app.AppCompatActivity
+import android.view.View
 import androidx.appcompat.widget.SearchView
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import br.com.jobflix.data.model.Serie
-import br.com.jobflix.databinding.ActHomeBinding
+import br.com.jobflix.databinding.FragHomeBinding
 import br.com.jobflix.util.Constants.FIRST_PAGE
 import br.com.jobflix.util.EndlessRecyclerViewScrollListener
 import br.com.jobflix.util.extensions.hide
 import br.com.jobflix.util.extensions.show
 import br.com.jobflix.util.extensions.showErrorSnackbar
 import br.com.jobflix.util.extensions.viewBinding
+import br.com.jobflix.view.base.BaseFragment
 import br.com.jobflix.view.details.DetailActivity
-import br.com.jobflix.viewModel.home.HomeViewModel
-import com.google.android.material.snackbar.Snackbar
+import br.com.jobflix.viewModel.main.HomeViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class HomeActivity : AppCompatActivity() {
+class HomeFragment : BaseFragment() {
 
-    private val binding by viewBinding(ActHomeBinding::inflate)
+    override val binding by viewBinding(FragHomeBinding::inflate)
 
     private val viewModel: HomeViewModel by viewModel()
 
     private var lastLoadedPage = FIRST_PAGE
 
-    private val gridLayoutManager by lazy { GridLayoutManager(this@HomeActivity, GRID_SPAN_COUNT) }
+    private val gridLayoutManager by lazy { GridLayoutManager(context, GRID_SPAN_COUNT) }
 
-    private val itemsList: ArrayList<Serie> = arrayListOf()
+    private val seriesList: ArrayList<Serie> = arrayListOf()
 
     private val endlessScrollListener by lazy {
         object : EndlessRecyclerViewScrollListener(gridLayoutManager) {
@@ -56,24 +55,8 @@ class HomeActivity : AppCompatActivity() {
         }
     }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(binding.root)
-        buildUi()
-        subscribeUi()
-        loadSeries()
-    }
-
-    override fun onResume() {
-        super.onResume()
-        viewModel.getFavorites()
-    }
-
-    private fun buildUi() {
-        setupList()
-        binding.fabBackToTop.setOnClickListener { backToTop() }
-        binding.svSearch.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
-
+    private val onQueryTextListener by lazy {
+        object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean = true
 
             override fun onQueryTextChange(newText: String?): Boolean {
@@ -82,13 +65,26 @@ class HomeActivity : AppCompatActivity() {
 
                 return true
             }
-        })
+        }
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        buildUi()
+        subscribeUi()
+        loadSeries()
+    }
+
+    private fun buildUi() {
+        setupList()
+        binding.fabBackToTop.setOnClickListener { showFirstPage() }
+        binding.svSearch.setOnQueryTextListener(onQueryTextListener)
     }
 
     private fun setupList() {
         with(binding.rvSeries) {
             layoutManager = gridLayoutManager
-            adapter = SerieAdapter { onItemClicked(it) }.apply { submitList(itemsList) }
+            adapter = SerieAdapter { onItemClicked(it) }.apply { submitList(seriesList) }
         }
         addListScrollListeners()
     }
@@ -103,16 +99,10 @@ class HomeActivity : AppCompatActivity() {
     }
 
     private fun subscribeUi() {
-        viewModel.onSeriesResult().observe(this) { onSeriesResult(it) }
-        viewModel.onError().observe(this) { onError() }
-        viewModel.onSearch().observe(this) { updateList(it) }
-        viewModel.onLoading().observe(this) { binding.pbLoading.isVisible = it }
-        viewModel.onFavoritesResult().observe(this) {
-
-        }
-        viewModel.onFavoritesError().observe(this) {
-
-        }
+        viewModel.onSeriesResult().observe(viewLifecycleOwner) { onSeriesResult(it) }
+        viewModel.onError().observe(viewLifecycleOwner) { onError() }
+        viewModel.onSearch().observe(viewLifecycleOwner) { updateList(it) }
+        viewModel.onLoading().observe(viewLifecycleOwner) { binding.pbLoading.isVisible = it }
     }
 
     private fun onSeriesResult(series: List<Serie>) {
@@ -123,19 +113,20 @@ class HomeActivity : AppCompatActivity() {
 
     @SuppressLint("NotifyDataSetChanged")
     private fun updateList(series: List<Serie>) {
-        itemsList += series
-        binding.rvSeries.adapter?.notifyDataSetChanged()
+        val previousContentSize = seriesList.size
+        seriesList += series
+        binding.rvSeries.adapter?.notifyItemRangeInserted(previousContentSize, seriesList.size)
     }
 
     private fun onItemClicked(serie: Serie) {
-        startActivity(DetailActivity.newInstance(this, serie))
+        context?.let { startActivity(DetailActivity.newInstance(it, serie)) }
     }
 
     private fun onError() {
         if (lastLoadedPage == FIRST_PAGE)
             showErrorView()
         else
-            showErrorSnackbar(binding.fabBackToTop) { loadSeries() }
+            activity?.showErrorSnackbar(binding.fabBackToTop) { loadSeries() }
     }
 
     private fun showErrorView() {
@@ -148,21 +139,20 @@ class HomeActivity : AppCompatActivity() {
         }
     }
 
-    private fun backToTop() {
-        showFirstPage()
-        binding.rvSeries.scrollToPosition(0)
-    }
-
-    fun showFirstPage() {
+    private fun showFirstPage() {
         resetList()
         viewModel.getFirstPage()
     }
 
     private fun resetList() {
-        binding.rvSeries.clearOnScrollListeners()
+        val previousListSize = seriesList.size
+        seriesList.clear()
         endlessScrollListener.resetState()
-        itemsList.clear()
-        binding.fabBackToTop.hide()
+        with(binding) {
+            fabBackToTop.hide()
+            rvSeries.clearOnScrollListeners()
+            rvSeries.adapter?.notifyItemRangeRemoved(0, previousListSize)
+        }
     }
 
     private fun addListScrollListeners() {

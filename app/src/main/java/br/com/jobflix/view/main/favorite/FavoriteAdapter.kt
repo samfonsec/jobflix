@@ -1,35 +1,40 @@
-package br.com.jobflix.view.home
+package br.com.jobflix.view.main.favorite
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import br.com.jobflix.data.model.Serie
-import br.com.jobflix.databinding.ItemSerieBinding
+import br.com.jobflix.databinding.ItemFavoriteBinding
 import br.com.jobflix.util.extensions.loadImageFromUrl
 
-class SerieAdapter(
-    private val onItemClicked: (Serie) -> Unit
-) : ListAdapter<Serie, SerieAdapter.ViewHolder>(DIFF_CALLBACK) {
+class FavoriteAdapter(
+    private val onItemClicked: (Serie) -> Unit,
+    private val onItemRemoved: (Int) -> Unit,
+) : ListAdapter<Serie, FavoriteAdapter.ViewHolder>(DIFF_CALLBACK) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val binding = ItemSerieBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        val binding = ItemFavoriteBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return ViewHolder(binding)
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         getItem(position).let { serie ->
-            holder.bind(serie)
+            holder.bind(serie) { onItemRemoved(position) }
             holder.itemView.setOnClickListener { onItemClicked(serie) }
         }
     }
 
-    class ViewHolder(private val binding: ItemSerieBinding) : RecyclerView.ViewHolder(binding.root) {
-        fun bind(serie: Serie) {
+    class ViewHolder(private val binding: ItemFavoriteBinding) : RecyclerView.ViewHolder(binding.root) {
+        fun bind(serie: Serie, onRemoved: View.OnClickListener) {
             with(binding) {
-                ivPoster.loadImageFromUrl(serie.image?.medium)
-                tvSerieName.text = serie.name
+                tvName.text = serie.name
+                ivPoster.loadImageFromUrl(serie.image?.original)
+                tvYear.text = serie.premiereYear()
+                serie.rating?.average?.let { tvRating.text = it.toString() }
+                ivDelete.setOnClickListener(onRemoved)
             }
         }
     }

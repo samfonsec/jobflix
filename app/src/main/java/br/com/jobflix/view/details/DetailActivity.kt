@@ -54,11 +54,15 @@ class DetailActivity : AppCompatActivity() {
         viewModel.onEpisodesResult().observe(this) { onEpisodesResult(it) }
         viewModel.onError().observe(this) { onError() }
         viewModel.onLoading().observe(this) { binding.pbLoadingEpisodes.isVisible = it }
+        viewModel.onCheckFavorite().observe(this) {
+            binding.cbFavorite.isChecked = it
+        }
     }
 
     private fun buildUi() {
         setupActionBar()
         setupEpisodesList()
+        viewModel.checkIfIsFavorite(serie.id)
         with(binding) {
             collapseToolbar.title = serie.name
             ivPoster.loadImageFromUrl(serie.image?.original)
@@ -70,8 +74,8 @@ class DetailActivity : AppCompatActivity() {
                 serie.scheduleDays(),
                 serie.schedule?.time
             )
-            serie.rating?.average?.let { tvRating.text = getString(R.string.average_rating, it) }
-            ivFavorite.setOnClickListener { onFavoriteClicked() }
+            serie.rating?.average?.let { tvRating.text = it.toString() }
+            cbFavorite.setOnCheckedChangeListener { _, isChecked -> onFavoriteClicked(isChecked) }
         }
     }
 
@@ -134,8 +138,11 @@ class DetailActivity : AppCompatActivity() {
         EpisodeBottomSheet.newInstance(episode).show(supportFragmentManager, TAG)
     }
 
-    private fun onFavoriteClicked() {
-        viewModel.saveAsFavorite(serie)
+    private fun onFavoriteClicked(isSaving: Boolean) {
+        if (isSaving)
+            viewModel.saveAsFavorite(serie)
+        else
+            viewModel.removeFavorite(serie)
     }
 
     private fun TextView.seasonNumber() = text?.split(" ")?.get(1)?.toInt() ?: 0

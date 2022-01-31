@@ -15,4 +15,6 @@ interface SeriesRepository {
     suspend fun saveFavorite(serie: Serie)
 
     suspend fun removeFavorite(serie: Serie)
+
+    suspend fun isFavorite(serieId: Int): ResultStatus<Boolean>
 }

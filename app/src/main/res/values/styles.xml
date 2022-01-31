@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="Widget.Jobflix.FloatingActionButton" parent="Widget.Design.FloatingActionButton">
+        <item name="android:backgroundTint">@color/secondaryColorAlpha</item>
+        <item name="borderWidth">0dp</item>
+        <item name="rippleColor">?colorPrimary</item>
+        <item name="fabSize">mini</item>
+    </style>
+
+    <style name="Widget.Jobflix.BottomNavigationView" parent="Widget.Design.BottomNavigationView">
+        <item name="itemIconTint">@color/bottom_nav_state_color</item>
+        <item name="itemTextColor">@color/bottom_nav_state_color</item>
+        <item name="labelVisibilityMode">labeled</item>
+    </style>
+</resources>

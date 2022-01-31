@@ -64,24 +64,26 @@
                 app:layout_constraintTop_toTopOf="parent"
                 tools:text="2020" />
 
-            <ImageView
-                android:id="@+id/ivFavorite"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+            <CheckBox
+                android:id="@+id/cbFavorite"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
                 android:layout_marginTop="@dimen/x_small_dimen"
                 android:layout_marginEnd="@dimen/default_dimen"
-                android:contentDescription="@string/action_favorite"
-                android:src="@drawable/ic_favorite_border"
+                android:background="@drawable/ic_favorite_selector"
+                android:button="@null"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="ContentDescription" />
 
             <TextView
                 android:id="@+id/tvGenres"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/default_dimen"
                 android:layout_marginTop="@dimen/x_small_dimen"
                 android:textColor="@color/secondaryColor"
+                app:layout_constraintEnd_toStartOf="@id/cbFavorite"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tvYear"
                 tools:text="Terror | Suspense | Comedy" />
@@ -102,11 +104,14 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/default_dimen"
                 android:layout_marginTop="@dimen/x_small_dimen"
+                android:drawablePadding="@dimen/x_small_dimen"
                 android:gravity="center"
+                android:textColor="@color/secondaryLightColor"
                 android:textSize="@dimen/text_size_small"
+                app:drawableStartCompat="@drawable/ic_rating"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tvSchedule"
-                tools:text="Average Rating: 8.1" />
+                tools:text="8.1" />
 
             <TextView
                 android:id="@+id/tvLabelDescription"

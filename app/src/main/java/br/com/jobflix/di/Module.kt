@@ -8,7 +8,9 @@ import br.com.jobflix.data.database.FavoriteDatabase
 import br.com.jobflix.data.repository.SearchRepository
 import br.com.jobflix.data.repository.SeriesRepository
 import br.com.jobflix.viewModel.details.DetailsViewModel
-import br.com.jobflix.viewModel.home.HomeViewModel
+import br.com.jobflix.viewModel.main.FavoritesViewModel
+import br.com.jobflix.viewModel.main.HomeViewModel
+import br.com.jobflix.viewModel.main.PeopleSearchViewModel
 import com.google.gson.FieldNamingPolicy
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
@@ -34,6 +36,8 @@ val searchModule = module {
 
 val viewModels = module {
     viewModel { HomeViewModel(get(), get()) }
+    viewModel { FavoritesViewModel(get()) }
+    viewModel { PeopleSearchViewModel(get()) }
     viewModel { DetailsViewModel(get()) }
 }
 

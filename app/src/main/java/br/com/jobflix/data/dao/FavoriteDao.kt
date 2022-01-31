@@ -14,4 +14,7 @@ interface FavoriteDao {
 
     @Delete
     suspend fun remove(serie: Serie)
+
+    @Query("SELECT EXISTS(SELECT * FROM table_favorites WHERE id=(:serieId))")
+    suspend fun isFavorite(serieId: Int): Boolean
 }

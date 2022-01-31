@@ -1,4 +1,4 @@
-package br.com.jobflix.viewModel.home
+package br.com.jobflix.viewModel.main
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
