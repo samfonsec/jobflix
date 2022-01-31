@@ -4,7 +4,9 @@ import android.content.Context
 import android.os.Build
 import android.text.Html
 import android.view.View
+import android.view.inputmethod.InputMethod.SHOW_FORCED
 import android.view.inputmethod.InputMethodManager
+import android.view.inputmethod.InputMethodManager.HIDE_IMPLICIT_ONLY
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.core.view.isVisible
@@ -33,11 +35,9 @@ fun TextView.setTextFromHtml(html: String) {
 }
 
 fun View.showSoftKeyboard() {
-    postDelayed({
-        requestFocus()
-        val imm = context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-        imm.showSoftInput(this, InputMethodManager.SHOW_IMPLICIT)
-    }, 200)
+    requestFocus()
+    val imm = context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+    imm.toggleSoftInput(SHOW_FORCED, HIDE_IMPLICIT_ONLY)
 }
 
 fun View.hideSoftKeyboard() {

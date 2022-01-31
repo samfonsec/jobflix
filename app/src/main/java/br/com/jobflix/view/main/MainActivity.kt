@@ -70,6 +70,7 @@ class MainActivity : AppCompatActivity() {
     private fun onFragmentChanged(fragment: Fragment) {
         when (fragment) {
             is FavoritesFragment -> fragment.loadFavorites()
+            is PeopleSearchFragment -> fragment.showKeyboard()
         }
     }
 

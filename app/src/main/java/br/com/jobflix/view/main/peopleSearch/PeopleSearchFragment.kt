@@ -1,6 +1,8 @@
 package br.com.jobflix.view.main.peopleSearch
 
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.view.View
 import androidx.appcompat.widget.SearchView
 import androidx.recyclerview.widget.GridLayoutManager
@@ -29,7 +31,8 @@ class PeopleSearchFragment : BaseFragment() {
             override fun onQueryTextSubmit(query: String?): Boolean = true
 
             override fun onQueryTextChange(newText: String?): Boolean {
-                if (newText.isNullOrEmpty()) clearList()
+                if (newText.isNullOrEmpty())
+                    Handler(Looper.getMainLooper()).postDelayed({ clearList() }, EMPTY_STATE_DELAY)
                 else searchPeople(newText)
 
                 return true
@@ -93,10 +96,10 @@ class PeopleSearchFragment : BaseFragment() {
         binding.rvPeople.adapter?.notifyItemRangeRemoved(0, previousListSize)
     }
 
-    private fun showEmptyState() {
+    private fun showEmptyState(noResultsFound: Boolean = true) {
         with(binding) {
-            tvEmptyState.show()
             rvPeople.hide()
+            if (noResultsFound) tvEmptyState.show()
         }
     }
 
@@ -107,7 +110,12 @@ class PeopleSearchFragment : BaseFragment() {
         }
     }
 
+    fun showKeyboard() {
+        binding.svSearch.showSoftKeyboard()
+    }
+
     companion object {
         private const val GRID_SPAN_COUNT = 3
+        private const val EMPTY_STATE_DELAY = 500L
     }
 }
