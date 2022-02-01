@@ -8,10 +8,7 @@ import androidx.appcompat.widget.SearchView
 import androidx.recyclerview.widget.GridLayoutManager
 import br.com.jobflix.data.model.People
 import br.com.jobflix.databinding.FragPeopleSearchBinding
-import br.com.jobflix.util.extensions.hide
-import br.com.jobflix.util.extensions.show
-import br.com.jobflix.util.extensions.showSoftKeyboard
-import br.com.jobflix.util.extensions.viewBinding
+import br.com.jobflix.util.extensions.*
 import br.com.jobflix.view.base.BaseFragment
 import br.com.jobflix.view.details.PeopleDetailActivity
 import br.com.jobflix.viewModel.main.PeopleSearchViewModel
@@ -59,7 +56,10 @@ class PeopleSearchFragment : BaseFragment() {
 
     private fun buildUi() {
         setupList()
-        binding.svSearch.setOnQueryTextListener(onQueryTextListener)
+        with(binding.svSearch) {
+            setOnQueryTextListener(onQueryTextListener)
+            disableSpace()
+        }
     }
 
     private fun setupList() {
@@ -100,6 +100,7 @@ class PeopleSearchFragment : BaseFragment() {
         val previousListSize = peopleList.size
         peopleList.clear()
         binding.rvPeople.adapter?.notifyItemRangeRemoved(0, previousListSize)
+        binding.tvEmptyState.hide()
     }
 
     private fun showEmptyState(noResultsFound: Boolean = true) {
@@ -122,6 +123,6 @@ class PeopleSearchFragment : BaseFragment() {
 
     companion object {
         private const val GRID_SPAN_COUNT = 3
-        private const val EMPTY_STATE_DELAY = 500L
+        private const val EMPTY_STATE_DELAY = 600L
     }
 }

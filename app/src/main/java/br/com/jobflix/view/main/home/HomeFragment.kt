@@ -11,10 +11,7 @@ import br.com.jobflix.data.model.Serie
 import br.com.jobflix.databinding.FragHomeBinding
 import br.com.jobflix.util.Constants.FIRST_PAGE
 import br.com.jobflix.util.EndlessRecyclerViewScrollListener
-import br.com.jobflix.util.extensions.hide
-import br.com.jobflix.util.extensions.show
-import br.com.jobflix.util.extensions.showErrorSnackbar
-import br.com.jobflix.util.extensions.viewBinding
+import br.com.jobflix.util.extensions.*
 import br.com.jobflix.view.base.BaseFragment
 import br.com.jobflix.view.details.DetailActivity
 import br.com.jobflix.viewModel.main.HomeViewModel
@@ -77,8 +74,11 @@ class HomeFragment : BaseFragment() {
 
     private fun buildUi() {
         setupList()
-        binding.fabBackToTop.setOnClickListener { showFirstPage() }
-        binding.svSearch.setOnQueryTextListener(onQueryTextListener)
+        with(binding) {
+            fabBackToTop.setOnClickListener { showFirstPage() }
+            svSearch.setOnQueryTextListener(onQueryTextListener)
+            svSearch.disableSpace()
+        }
     }
 
     private fun setupList() {
