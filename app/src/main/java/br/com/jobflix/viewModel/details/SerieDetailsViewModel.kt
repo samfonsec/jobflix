@@ -56,4 +56,6 @@ class SerieDetailsViewModel(
             }
         }
     }
+
+    fun getSeasonNumber(selectedText: String) = selectedText.split(" ")[1].toInt()
 }

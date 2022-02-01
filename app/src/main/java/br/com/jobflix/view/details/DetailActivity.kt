@@ -54,9 +54,7 @@ class DetailActivity : AppCompatActivity() {
         viewModel.onEpisodesResult().observe(this) { onEpisodesResult(it) }
         viewModel.onError().observe(this) { onError() }
         viewModel.onLoading().observe(this) { binding.pbLoadingEpisodes.isVisible = it }
-        viewModel.onCheckFavorite().observe(this) {
-            binding.cbFavorite.isChecked = it
-        }
+        viewModel.onCheckFavorite().observe(this) { binding.cbFavorite.isChecked = it }
     }
 
     private fun buildUi() {
@@ -106,7 +104,7 @@ class DetailActivity : AppCompatActivity() {
             }
             onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
                 override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-                    val selectedSeason = (view as? TextView)?.seasonNumber()
+                    val selectedSeason = viewModel.getSeasonNumber((view as? TextView)?.text.toString())
                     episodesList.clear()
                     episodes[selectedSeason]?.let { updateEpisodesList(it) }
                     binding.rvEpisodes.scrollToPosition(0)
@@ -144,8 +142,6 @@ class DetailActivity : AppCompatActivity() {
         else
             viewModel.removeFavorite(serie)
     }
-
-    private fun TextView.seasonNumber() = text?.split(" ")?.get(1)?.toInt() ?: 0
 
     companion object {
         private const val TAG = "EpisodeBottomSheet"
