@@ -31,9 +31,14 @@ class PeopleSearchFragment : BaseFragment() {
             override fun onQueryTextSubmit(query: String?): Boolean = true
 
             override fun onQueryTextChange(newText: String?): Boolean {
-                if (newText.isNullOrEmpty())
-                    Handler(Looper.getMainLooper()).postDelayed({ clearList() }, EMPTY_STATE_DELAY)
-                else searchPeople(newText)
+                if (newText.isNullOrEmpty()) {
+                    Handler(Looper.getMainLooper()).postDelayed({
+                        clearList()
+                        binding.ivBackground.show()
+                    }, EMPTY_STATE_DELAY)
+                } else {
+                    searchPeople(newText)
+                }
 
                 return true
             }
@@ -88,6 +93,7 @@ class PeopleSearchFragment : BaseFragment() {
     private fun searchPeople(name: String) {
         viewModel.searchForPeople(name)
         binding.tvEmptyState.hide()
+        binding.ivBackground.hide()
     }
 
     private fun clearList() {
