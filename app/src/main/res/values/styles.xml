@@ -13,4 +13,19 @@
         <item name="itemTextColor">@color/bottom_nav_state_color</item>
         <item name="labelVisibilityMode">labeled</item>
     </style>
+
+    <style name="Widget.Jobflix.SimpleDraweeeView" parent="">
+        <item name="progressBarAutoRotateInterval">1500</item>
+        <item name="roundedCornerRadius">@dimen/x_small_dimen</item>
+    </style>
+
+    <style name="Widget.Jobflix.SimpleDraweeeView.Serie">
+        <item name="failureImage">@drawable/ic_movie_creation</item>
+        <item name="progressBarImage">@drawable/ic_movie_creation</item>
+    </style>
+
+    <style name="Widget.Jobflix.SimpleDraweeeView.People">
+        <item name="failureImage">@drawable/ic_face</item>
+        <item name="progressBarImage">@drawable/ic_face</item>
+    </style>
 </resources>

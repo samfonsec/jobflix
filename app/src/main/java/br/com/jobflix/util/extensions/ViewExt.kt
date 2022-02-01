@@ -3,19 +3,12 @@ package br.com.jobflix.util.extensions
 import android.content.Context
 import android.os.Build
 import android.text.Html
-import android.text.InputFilter
 import android.view.View
 import android.view.inputmethod.InputMethod.SHOW_FORCED
 import android.view.inputmethod.InputMethodManager
 import android.view.inputmethod.InputMethodManager.HIDE_IMPLICIT_ONLY
-import android.view.inputmethod.InputMethodManager.SHOW_IMPLICIT
-import android.widget.EditText
-import android.widget.ImageView
 import android.widget.TextView
-import androidx.appcompat.widget.SearchView
 import androidx.core.view.isVisible
-import br.com.jobflix.R
-import com.squareup.picasso.Picasso
 
 fun View.show() {
     isVisible = true
@@ -23,10 +16,6 @@ fun View.show() {
 
 fun View.hide() {
     isVisible = false
-}
-
-fun ImageView.loadImageFromUrl(url: String?, placeHolderResId: Int = R.drawable.bg_placeholder_serie) {
-    Picasso.get().load(url).placeholder(placeHolderResId).tag(context).into(this)
 }
 
 fun TextView.setTextFromHtml(html: String) {
@@ -43,15 +32,4 @@ fun View.showSoftKeyboard() {
     requestFocus()
     val imm = context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
     imm.toggleSoftInput(SHOW_FORCED, HIDE_IMPLICIT_ONLY)
-}
-
-fun SearchView.disableSpace() {
-    val noSpaceFilter = InputFilter { source, start, end, _, _, _ ->
-        for (i in start until end) {
-            if (source.length == 1 && Character.isWhitespace(source[i]))
-                return@InputFilter ""
-        }
-        null
-    }
-    findViewById<TextView>(androidx.appcompat.R.id.search_src_text).filters = arrayOf(noSpaceFilter)
 }

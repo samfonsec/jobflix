@@ -19,6 +19,7 @@ import br.com.jobflix.databinding.ActDetailsBinding
 import br.com.jobflix.util.*
 import br.com.jobflix.util.extensions.*
 import br.com.jobflix.viewModel.details.SerieDetailsViewModel
+import com.google.android.material.snackbar.Snackbar
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class DetailActivity : AppCompatActivity() {
@@ -53,8 +54,8 @@ class DetailActivity : AppCompatActivity() {
     private fun subscribeUi() {
         viewModel.onEpisodesResult().observe(this) { onEpisodesResult(it) }
         viewModel.onError().observe(this) { onError() }
+        viewModel.onCheckFavorite().observe(this) { onCheckFavoriteResult(it) }
         viewModel.onLoading().observe(this) { binding.pbLoadingEpisodes.isVisible = it }
-        viewModel.onCheckFavorite().observe(this) { binding.cbFavorite.isChecked = it }
     }
 
     private fun buildUi() {
@@ -63,7 +64,7 @@ class DetailActivity : AppCompatActivity() {
         viewModel.checkIfIsFavorite(serie.id)
         with(binding) {
             collapseToolbar.title = serie.name
-            ivPoster.loadImageFromUrl(serie.image?.original)
+            ivPoster.setImageURI(serie.image?.original)
             tvYear.text = serie.premiereYear()
             tvGenres.text = serie.formattedGenres()
             serie.summary?.let { tvDescription.setTextFromHtml(it) }
@@ -73,7 +74,6 @@ class DetailActivity : AppCompatActivity() {
                 serie.schedule?.time
             )
             serie.rating?.average?.let { tvRating.text = it.toString() }
-            cbFavorite.setOnCheckedChangeListener { _, isChecked -> onFavoriteClicked(isChecked) }
         }
     }
 
@@ -126,6 +126,13 @@ class DetailActivity : AppCompatActivity() {
         binding.spSeasons.hide()
     }
 
+    private fun onCheckFavoriteResult(isFavorite: Boolean) {
+        with(binding.cbFavorite) {
+            isChecked = isFavorite
+            setOnCheckedChangeListener { _, isChecked -> onFavoriteClicked(isChecked) }
+        }
+    }
+
     @SuppressLint("NotifyDataSetChanged")
     private fun updateEpisodesList(episodes: List<Episode>) {
         episodesList += episodes
@@ -137,10 +144,14 @@ class DetailActivity : AppCompatActivity() {
     }
 
     private fun onFavoriteClicked(isSaving: Boolean) {
-        if (isSaving)
+        val message = if (isSaving) {
             viewModel.saveAsFavorite(serie)
-        else
+            getString(R.string.saved_as_favorite)
+        } else {
             viewModel.removeFavorite(serie)
+            getString(R.string.removed_from_favorite)
+        }
+        Snackbar.make(binding.root, message, Snackbar.LENGTH_SHORT).show()
     }
 
     companion object {

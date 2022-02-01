@@ -5,8 +5,9 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
-    <ImageView
+    <com.facebook.drawee.view.SimpleDraweeView
         android:id="@+id/ivPoster"
+        style="@style/Widget.Jobflix.SimpleDraweeeView.Serie"
         android:layout_width="74dp"
         android:layout_height="104dp"
         android:layout_margin="@dimen/small_dimen"
@@ -31,10 +32,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/default_dimen"
+        android:textColor="@color/primaryLightTextColor"
         android:layout_marginTop="@dimen/x_small_dimen"
         android:textSize="@dimen/text_size_small"
         app:layout_constraintStart_toEndOf="@id/tvRating"
-        app:layout_constraintTop_toBottomOf="@id/tvName"
+        app:layout_constraintTop_toBottomOf="@id/tvGenres"
         tools:text="2020" />
 
     <TextView
@@ -49,8 +51,22 @@
         android:textSize="@dimen/text_size_small"
         app:drawableStartCompat="@drawable/ic_rating"
         app:layout_constraintStart_toEndOf="@id/ivPoster"
-        app:layout_constraintTop_toBottomOf="@id/tvName"
+        app:layout_constraintTop_toBottomOf="@id/tvGenres"
         tools:text="8.1" />
+
+    <TextView
+        android:id="@+id/tvGenres"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/small_dimen"
+        android:layout_marginTop="@dimen/x_small_dimen"
+        android:drawablePadding="@dimen/x_small_dimen"
+        android:gravity="center"
+        android:textColor="@color/primaryLightTextColor"
+        android:textSize="@dimen/text_size_small"
+        app:layout_constraintStart_toEndOf="@id/ivPoster"
+        app:layout_constraintTop_toBottomOf="@id/tvName"
+        tools:text="Drama | Comedy | Action" />
 
     <ImageView
         android:id="@+id/ivDelete"

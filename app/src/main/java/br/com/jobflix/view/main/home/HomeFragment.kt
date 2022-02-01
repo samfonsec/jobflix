@@ -11,7 +11,10 @@ import br.com.jobflix.data.model.Serie
 import br.com.jobflix.databinding.FragHomeBinding
 import br.com.jobflix.util.Constants.FIRST_PAGE
 import br.com.jobflix.util.EndlessRecyclerViewScrollListener
-import br.com.jobflix.util.extensions.*
+import br.com.jobflix.util.extensions.hide
+import br.com.jobflix.util.extensions.show
+import br.com.jobflix.util.extensions.showErrorSnackbar
+import br.com.jobflix.util.extensions.viewBinding
 import br.com.jobflix.view.base.BaseFragment
 import br.com.jobflix.view.details.DetailActivity
 import br.com.jobflix.viewModel.main.HomeViewModel
@@ -57,8 +60,10 @@ class HomeFragment : BaseFragment() {
             override fun onQueryTextSubmit(query: String?): Boolean = true
 
             override fun onQueryTextChange(newText: String?): Boolean {
-                if (newText.isNullOrEmpty()) showFirstPage()
-                else searchSeries(newText)
+                if (newText.isNullOrEmpty()) {
+                    viewModel.cancelLastJob()
+                    showFirstPage()
+                } else searchSeries(newText)
 
                 return true
             }
@@ -77,7 +82,6 @@ class HomeFragment : BaseFragment() {
         with(binding) {
             fabBackToTop.setOnClickListener { showFirstPage() }
             svSearch.setOnQueryTextListener(onQueryTextListener)
-            svSearch.disableSpace()
         }
     }
 
@@ -94,14 +98,14 @@ class HomeFragment : BaseFragment() {
     }
 
     private fun searchSeries(query: String) {
-        resetList()
+        binding.tvEmptyState.hide()
         viewModel.searchSeries(query)
     }
 
     private fun subscribeUi() {
         viewModel.onSeriesResult().observe(viewLifecycleOwner) { onSeriesResult(it) }
-        viewModel.onError().observe(viewLifecycleOwner) { onError() }
-        viewModel.onSearch().observe(viewLifecycleOwner) { updateList(it) }
+        viewModel.onError().observe(viewLifecycleOwner) { onError(it) }
+        viewModel.onSearch().observe(viewLifecycleOwner) { onSearch(it) }
         viewModel.onLoading().observe(viewLifecycleOwner) { binding.pbLoading.isVisible = it }
     }
 
@@ -109,6 +113,14 @@ class HomeFragment : BaseFragment() {
         binding.svSearch.show()
         updateList(series)
         addListScrollListeners()
+    }
+
+    private fun onSearch(series: List<Serie>) {
+        resetList()
+        updateList(series)
+
+        if (series.isEmpty())
+            binding.tvEmptyState.show()
     }
 
     @SuppressLint("NotifyDataSetChanged")
@@ -122,7 +134,10 @@ class HomeFragment : BaseFragment() {
         context?.let { startActivity(DetailActivity.newInstance(it, serie)) }
     }
 
-    private fun onError() {
+    private fun onError(isCanceling: Boolean) {
+        if (isCanceling)
+            return
+
         if (lastLoadedPage == FIRST_PAGE)
             showErrorView()
         else
@@ -145,6 +160,7 @@ class HomeFragment : BaseFragment() {
     }
 
     private fun resetList() {
+        binding.tvEmptyState.hide()
         val previousListSize = seriesList.size
         seriesList.clear()
         endlessScrollListener.resetState()

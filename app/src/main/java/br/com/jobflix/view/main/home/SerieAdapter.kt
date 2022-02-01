@@ -7,7 +7,6 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import br.com.jobflix.data.model.Serie
 import br.com.jobflix.databinding.ItemSerieBinding
-import br.com.jobflix.util.extensions.loadImageFromUrl
 
 class SerieAdapter(
     private val onItemClicked: (Serie) -> Unit
@@ -28,7 +27,7 @@ class SerieAdapter(
     class ViewHolder(private val binding: ItemSerieBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(serie: Serie) {
             with(binding) {
-                ivPoster.loadImageFromUrl(serie.image?.medium)
+                ivPoster.setImageURI(serie.image?.medium)
                 tvSerieName.text = serie.name
             }
         }

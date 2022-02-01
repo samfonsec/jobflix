@@ -47,7 +47,7 @@ class PeopleDetailActivity : AppCompatActivity() {
         setupActionBar()
         setupList()
         with(binding) {
-            ivPeople.loadImageFromUrl(people.image?.original, R.drawable.bg_placeholder_people)
+            ivPeople.setImageURI(people.image?.original)
             tvName.text = people.name
             people.birthday?.toDate()?.let {
                 tvBirthdate.text = if (people.deathday == null)

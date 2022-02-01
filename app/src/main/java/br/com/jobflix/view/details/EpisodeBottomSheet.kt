@@ -6,7 +6,10 @@ import android.view.View
 import android.view.ViewGroup
 import br.com.jobflix.data.model.Episode
 import br.com.jobflix.databinding.BottomSheetEpDetailBinding
-import br.com.jobflix.util.extensions.*
+import br.com.jobflix.util.extensions.argument
+import br.com.jobflix.util.extensions.setTextFromHtml
+import br.com.jobflix.util.extensions.viewBinding
+import br.com.jobflix.util.extensions.withArgs
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 
 class EpisodeBottomSheet : BottomSheetDialogFragment() {
@@ -23,7 +26,7 @@ class EpisodeBottomSheet : BottomSheetDialogFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         with(binding) {
-            ivPoster.loadImageFromUrl(episode.image?.original)
+            ivPoster.setImageURI(episode.image?.original)
             tvEpName.text = episode.name
             tvEpNumber.text = episode.formattedNumber()
             tvEpRuntime.text = episode.formattedRuntime()

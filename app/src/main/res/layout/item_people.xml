@@ -5,8 +5,9 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
-    <ImageView
+    <com.facebook.drawee.view.SimpleDraweeView
         android:id="@+id/ivPeople"
+        style="@style/Widget.Jobflix.SimpleDraweeeView.People"
         android:layout_width="match_parent"
         android:layout_height="160dp"
         android:layout_marginHorizontal="@dimen/x_small_dimen"

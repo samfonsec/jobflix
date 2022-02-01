@@ -1,8 +1,6 @@
 package br.com.jobflix.view.main.peopleSearch
 
 import android.os.Bundle
-import android.os.Handler
-import android.os.Looper
 import android.view.View
 import androidx.appcompat.widget.SearchView
 import androidx.recyclerview.widget.GridLayoutManager
@@ -13,7 +11,6 @@ import br.com.jobflix.view.base.BaseFragment
 import br.com.jobflix.view.details.PeopleDetailActivity
 import br.com.jobflix.viewModel.main.PeopleSearchViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
-
 
 class PeopleSearchFragment : BaseFragment() {
 
@@ -29,10 +26,9 @@ class PeopleSearchFragment : BaseFragment() {
 
             override fun onQueryTextChange(newText: String?): Boolean {
                 if (newText.isNullOrEmpty()) {
-                    Handler(Looper.getMainLooper()).postDelayed({
-                        clearList()
-                        binding.ivBackground.show()
-                    }, EMPTY_STATE_DELAY)
+                    viewModel.cancelLastJob()
+                    clearList()
+                    binding.ivBackground.show()
                 } else {
                     searchPeople(newText)
                 }
@@ -56,10 +52,7 @@ class PeopleSearchFragment : BaseFragment() {
 
     private fun buildUi() {
         setupList()
-        with(binding.svSearch) {
-            setOnQueryTextListener(onQueryTextListener)
-            disableSpace()
-        }
+        binding.svSearch.setOnQueryTextListener(onQueryTextListener)
     }
 
     private fun setupList() {
@@ -75,7 +68,7 @@ class PeopleSearchFragment : BaseFragment() {
 
     private fun subscribeUi() {
         viewModel.onSearch().observe(viewLifecycleOwner) { onSearchResult(it) }
-        viewModel.onError().observe(viewLifecycleOwner) { showEmptyState() }
+        viewModel.onError().observe(viewLifecycleOwner) { isCancelling -> if (!isCancelling) showEmptyState() }
     }
 
     private fun onSearchResult(people: List<People>) {
@@ -123,6 +116,5 @@ class PeopleSearchFragment : BaseFragment() {
 
     companion object {
         private const val GRID_SPAN_COUNT = 3
-        private const val EMPTY_STATE_DELAY = 600L
     }
 }

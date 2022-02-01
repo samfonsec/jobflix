@@ -5,10 +5,8 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import br.com.jobflix.R
 import br.com.jobflix.data.model.People
 import br.com.jobflix.databinding.ItemPeopleBinding
-import br.com.jobflix.util.extensions.loadImageFromUrl
 
 class PeopleAdapter(
     private val onItemClicked: (People) -> Unit
@@ -29,7 +27,7 @@ class PeopleAdapter(
     class ViewHolder(private val binding: ItemPeopleBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(people: People) {
             with(binding) {
-                ivPeople.loadImageFromUrl(people.image?.medium, R.drawable.bg_placeholder_people)
+                ivPeople.setImageURI(people.image?.medium)
                 tvPeopleName.text = people.name
             }
         }

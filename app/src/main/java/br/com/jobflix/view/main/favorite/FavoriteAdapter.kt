@@ -8,7 +8,6 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import br.com.jobflix.data.model.Serie
 import br.com.jobflix.databinding.ItemFavoriteBinding
-import br.com.jobflix.util.extensions.loadImageFromUrl
 
 class FavoriteAdapter(
     private val onItemClicked: (Serie) -> Unit,
@@ -31,7 +30,8 @@ class FavoriteAdapter(
         fun bind(serie: Serie, onRemoved: View.OnClickListener) {
             with(binding) {
                 tvName.text = serie.name
-                ivPoster.loadImageFromUrl(serie.image?.original)
+                tvGenres.text = serie.formattedGenres()
+                ivPoster.setImageURI(serie.image?.original)
                 tvYear.text = serie.premiereYear()
                 serie.rating?.average?.let { tvRating.text = it.toString() }
                 ivDelete.setOnClickListener(onRemoved)

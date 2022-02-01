@@ -8,7 +8,6 @@ import androidx.recyclerview.widget.RecyclerView
 import br.com.jobflix.data.model.Episode
 import br.com.jobflix.databinding.ItemEpisodeBinding
 import br.com.jobflix.util.Constants.EPISODE_NUMBER_NAME_FORMAT
-import br.com.jobflix.util.extensions.loadImageFromUrl
 
 class EpisodeAdapter(
     private val onItemClicked: (Episode) -> Unit
@@ -29,7 +28,7 @@ class EpisodeAdapter(
     class ViewHolder(private val binding: ItemEpisodeBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(episode: Episode) {
             with(binding) {
-                ivPoster.loadImageFromUrl(episode.image?.original)
+                ivPoster.setImageURI(episode.image?.original)
                 tvEpNumber.text = String.format(EPISODE_NUMBER_NAME_FORMAT, episode.number, episode.name)
             }
         }

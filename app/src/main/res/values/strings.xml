@@ -19,4 +19,7 @@
     <string name="label_people_series">Series</string>
     <string name="birthdate_age_format">%s (age %d)</string>
     <string name="death_date_format">Died: %s</string>
+
+    <string name="saved_as_favorite">Added to favorites list</string>
+    <string name="removed_from_favorite">Removed from favorites list</string>
 </resources>
