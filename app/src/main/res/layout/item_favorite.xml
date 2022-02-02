@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <com.facebook.drawee.view.SimpleDraweeView
+        android:id="@+id/ivPoster"
+        style="@style/Widget.Jobflix.SimpleDraweeeView.Serie"
+        android:layout_width="74dp"
+        android:layout_height="104dp"
+        android:layout_margin="@dimen/small_dimen"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="ContentDescription" />
+
+    <TextView
+        android:id="@+id/tvName"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/small_dimen"
+        android:textSize="@dimen/text_size_medium"
+        app:layout_constraintEnd_toStartOf="@id/ivDelete"
+        app:layout_constraintStart_toEndOf="@id/ivPoster"
+        app:layout_constraintTop_toTopOf="@id/ivPoster"
+        tools:text="How I Met Yout Mother" />
+
+    <TextView
+        android:id="@+id/tvYear"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/default_dimen"
+        android:textColor="@color/primaryLightTextColor"
+        android:layout_marginTop="@dimen/x_small_dimen"
+        android:textSize="@dimen/text_size_small"
+        app:layout_constraintStart_toEndOf="@id/tvRating"
+        app:layout_constraintTop_toBottomOf="@id/tvGenres"
+        tools:text="2020" />
+
+    <TextView
+        android:id="@+id/tvRating"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/small_dimen"
+        android:layout_marginTop="@dimen/x_small_dimen"
+        android:drawablePadding="@dimen/x_small_dimen"
+        android:gravity="center"
+        android:textColor="@color/secondaryLightColor"
+        android:textSize="@dimen/text_size_small"
+        app:drawableStartCompat="@drawable/ic_rating"
+        app:layout_constraintStart_toEndOf="@id/ivPoster"
+        app:layout_constraintTop_toBottomOf="@id/tvGenres"
+        tools:text="8.1" />
+
+    <TextView
+        android:id="@+id/tvGenres"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/small_dimen"
+        android:layout_marginTop="@dimen/x_small_dimen"
+        android:drawablePadding="@dimen/x_small_dimen"
+        android:gravity="center"
+        android:textColor="@color/primaryLightTextColor"
+        android:textSize="@dimen/text_size_small"
+        app:layout_constraintStart_toEndOf="@id/ivPoster"
+        app:layout_constraintTop_toBottomOf="@id/tvName"
+        tools:text="Drama | Comedy | Action" />
+
+    <ImageView
+        android:id="@+id/ivDelete"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_margin="@dimen/small_dimen"
+        android:padding="@dimen/x_small_dimen"
+        android:src="@drawable/ic_remove_favorite"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="ContentDescription" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

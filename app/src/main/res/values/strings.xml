@@ -1,0 +1,38 @@
+<resources>
+    <string name="app_name">Jobsity Play</string>
+
+    <string name="menu_home">Home</string>
+    <string name="menu_favorites">Favorites</string>
+    <string name="menu_people_search">People Search</string>
+    <string name="label_description">Description</string>
+    <string name="average_rating">Rating: %.1f</string>
+    <string name="schedule_date_time">On air: %s %s</string>
+    <string name="label_episodes">Episodes</string>
+    <string name="season_text">Season %02d</string>
+    <string name="error_short_message">Something went wrong!</string>
+    <string name="error_message">Something went wrong!\nPlease try again.</string>
+    <string name="error_action">Try again</string>
+    <string name="favorite_empty_state">Your favorite list is empty.\n</string>
+    <string name="series_search_hint">Search for series…</string>
+    <string name="people_search_hint">Search for people…</string>
+    <string name="empty_list_text">No results found</string>
+    <string name="label_people_series">Series</string>
+    <string name="birthdate_age_format">%s (age %d)</string>
+    <string name="death_date_format">Died: %s</string>
+
+    <string name="saved_as_favorite">Added to favorites list</string>
+    <string name="removed_from_favorite">Removed from favorites list</string>
+    <string name="label_new_pin_first_view">Before you start browsing through the TV series, you can create a PIN to increase the app security. It will be required every time the app is opened.</string>
+    <string name="label_new_pin_info">You can create a PIN to increase the app security. It will be required every time the app is opened.</string>
+    <string name="label_remove_pin_info">If you want to remove the current PIN, please enter it below.</string>
+    <string name="label_require_pin_info">Insert your PIN to continue.</string>
+    <string name="action_save_pin">Save PIN</string>
+    <string name="action_remove_pin">Remove PIN</string>
+    <string name="action_skip">I don\'t want to use a PIN!</string>
+    <string name="pin_helper_text">The PIN must have 4 digits.</string>
+    <string name="invalid_pin">Invalid PIN</string>
+    <string name="biometric_dialog_title">Use your fingerprint</string>
+    <string name="action_insert_pin">Use PIN</string>
+    <string name="use_fingerprint">Access with fingerprint</string>
+    <string name="enable_fingerprint">Enable access with fingerprint</string>
+</resources>

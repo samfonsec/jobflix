@@ -1,0 +1,17 @@
+<resources>
+    <style name="Theme.Jobflix" parent="Theme.MaterialComponents.NoActionBar">
+        <item name="colorPrimary">@color/primaryDarkColor</item>
+        <item name="colorPrimaryDark">@color/primaryDarkColor</item>
+        <item name="colorAccent">@color/secondaryColor</item>
+        <item name="colorSecondary">@color/secondaryColor</item>
+        <item name="colorControlNormal">@color/secondaryColor</item>
+        <item name="android:windowBackground">@color/primaryColor</item>
+        <item name="android:windowLightStatusBar">false</item>
+        <item name="android:textColor">@color/primaryTextColor</item>
+        <item name="android:fontFamily">@font/montserrat</item>
+    </style>
+
+    <style name="Theme.Jobflix.TransparentStatusBar">
+        <item name="android:windowTranslucentStatus">true</item>
+    </style>
+</resources>
