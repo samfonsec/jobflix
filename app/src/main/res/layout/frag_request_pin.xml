@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/tvLabel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/default_dimen"
+        android:layout_marginBottom="@dimen/medium_dimen"
+        android:gravity="center"
+        android:text="@string/label_require_pin_info"
+        app:layout_constraintBottom_toTopOf="@id/tiPassword" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tiPassword"
+        style="@style/Widget.Jobflix.TextInput"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/default_dimen"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.3"
+        app:layout_constraintVertical_chainStyle="packed"
+        app:passwordToggleEnabled="true">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etPassword"
+            style="@style/Widget.Jobflix.EditText.Pin"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <TextView
+        android:id="@+id/tvFingerprint"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/default_dimen"
+        android:layout_marginVertical="@dimen/medium_dimen"
+        android:textColor="?colorSecondary"
+        android:drawablePadding="@dimen/small_dimen"
+        android:padding="@dimen/default_dimen"
+        android:text="@string/use_fingerprint"
+        app:drawableStartCompat="@drawable/ic_fingerprint"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tiPassword" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -15,6 +15,7 @@ import br.com.jobflix.util.extensions.hide
 import br.com.jobflix.util.extensions.show
 import br.com.jobflix.util.extensions.showErrorSnackbar
 import br.com.jobflix.util.extensions.viewBinding
+import br.com.jobflix.view.auth.HandlePinDialog
 import br.com.jobflix.view.base.BaseFragment
 import br.com.jobflix.view.details.DetailActivity
 import br.com.jobflix.viewModel.main.HomeViewModel
@@ -82,7 +83,19 @@ class HomeFragment : BaseFragment() {
         with(binding) {
             fabBackToTop.setOnClickListener { showFirstPage() }
             svSearch.setOnQueryTextListener(onQueryTextListener)
+            ivSecurity.setOnClickListener { onSecurityButtonClicked() }
         }
+    }
+
+    private fun subscribeUi() {
+        viewModel.onSeriesResult().observe(viewLifecycleOwner) { onSeriesResult(it) }
+        viewModel.onError().observe(viewLifecycleOwner) { onError(it) }
+        viewModel.onSearch().observe(viewLifecycleOwner) { onSearch(it) }
+        viewModel.onLoading().observe(viewLifecycleOwner) { binding.pbLoading.isVisible = it }
+    }
+
+    private fun loadSeries() {
+        viewModel.loadSeries(lastLoadedPage)
     }
 
     private fun setupList() {
@@ -93,26 +106,21 @@ class HomeFragment : BaseFragment() {
         addListScrollListeners()
     }
 
-    private fun loadSeries() {
-        viewModel.loadSeries(lastLoadedPage)
-    }
-
-    private fun searchSeries(query: String) {
-        binding.tvEmptyState.hide()
-        viewModel.searchSeries(query)
-    }
-
-    private fun subscribeUi() {
-        viewModel.onSeriesResult().observe(viewLifecycleOwner) { onSeriesResult(it) }
-        viewModel.onError().observe(viewLifecycleOwner) { onError(it) }
-        viewModel.onSearch().observe(viewLifecycleOwner) { onSearch(it) }
-        viewModel.onLoading().observe(viewLifecycleOwner) { binding.pbLoading.isVisible = it }
-    }
-
     private fun onSeriesResult(series: List<Serie>) {
         binding.svSearch.show()
+        binding.ivSecurity.show()
         updateList(series)
         addListScrollListeners()
+    }
+
+    private fun onError(isCanceling: Boolean) {
+        if (isCanceling)
+            return
+
+        if (lastLoadedPage == FIRST_PAGE)
+            showErrorView()
+        else
+            activity?.showErrorSnackbar(binding.fabBackToTop) { loadSeries() }
     }
 
     private fun onSearch(series: List<Serie>) {
@@ -121,6 +129,11 @@ class HomeFragment : BaseFragment() {
 
         if (series.isEmpty())
             binding.tvEmptyState.show()
+    }
+
+    private fun searchSeries(query: String) {
+        binding.tvEmptyState.hide()
+        viewModel.searchSeries(query)
     }
 
     @SuppressLint("NotifyDataSetChanged")
@@ -132,16 +145,6 @@ class HomeFragment : BaseFragment() {
 
     private fun onItemClicked(serie: Serie) {
         context?.let { startActivity(DetailActivity.newInstance(it, serie)) }
-    }
-
-    private fun onError(isCanceling: Boolean) {
-        if (isCanceling)
-            return
-
-        if (lastLoadedPage == FIRST_PAGE)
-            showErrorView()
-        else
-            activity?.showErrorSnackbar(binding.fabBackToTop) { loadSeries() }
     }
 
     private fun showErrorView() {
@@ -178,7 +181,38 @@ class HomeFragment : BaseFragment() {
         }
     }
 
+    private fun onSecurityButtonClicked() {
+        if (viewModel.hasPin())
+            showRemovePinDialog()
+        else
+            showCreatePinDialog()
+    }
+
+    private fun showCreatePinDialog() {
+        HandlePinDialog.newInstance(false).apply {
+            onSavePin { pin, enableFingerprint ->
+                viewModel.savePin(pin)
+                viewModel.enableFingerprint(enableFingerprint)
+                dismiss()
+            }
+        }.show(childFragmentManager, TAG)
+    }
+
+    private fun showRemovePinDialog() {
+        HandlePinDialog.newInstance(true).apply {
+            onRemovePin {
+                if (viewModel.isValidPin(it)) {
+                    viewModel.removePin()
+                    dismiss()
+                } else {
+                    setError()
+                }
+            }
+        }.show(childFragmentManager, TAG)
+    }
+
     companion object {
+        private const val TAG = "HomeFragment"
         private const val GRID_SPAN_COUNT = 3
     }
 }

@@ -7,6 +7,7 @@
         <entry key="..\:/Users/samfo/AndroidStudioProjects/Jobflix/app/src/main/res/drawable/bg_gradient.xml" value="0.5286458333333334" />
         <entry key="..\:/Users/samfo/AndroidStudioProjects/Jobflix/app/src/main/res/drawable/bg_placeholder_people.xml" value="0.5286458333333334" />
         <entry key="..\:/Users/samfo/AndroidStudioProjects/Jobflix/app/src/main/res/drawable/bg_placeholder_serie.xml" value="0.5286458333333334" />
+        <entry key="..\:/Users/samfo/AndroidStudioProjects/Jobflix/app/src/main/res/drawable/bg_rounded_dialog.xml" value="0.5286458333333334" />
         <entry key="..\:/Users/samfo/AndroidStudioProjects/Jobflix/app/src/main/res/drawable/bg_serie_placeholder.xml" value="0.5427083333333333" />
         <entry key="..\:/Users/samfo/AndroidStudioProjects/Jobflix/app/src/main/res/drawable/ic_arrow_back_24.xml" value="0.5286458333333334" />
         <entry key="..\:/Users/samfo/AndroidStudioProjects/Jobflix/app/src/main/res/drawable/ic_arrow_upward_24.xml" value="0.5286458333333334" />
@@ -17,10 +18,12 @@
         <entry key="..\:/Users/samfo/AndroidStudioProjects/Jobflix/app/src/main/res/drawable/ic_favorite_border.xml" value="0.5286458333333334" />
         <entry key="..\:/Users/samfo/AndroidStudioProjects/Jobflix/app/src/main/res/drawable/ic_favorite_border_24.xml" value="0.5286458333333334" />
         <entry key="..\:/Users/samfo/AndroidStudioProjects/Jobflix/app/src/main/res/drawable/ic_favorite_selector.xml" value="0.5286458333333334" />
+        <entry key="..\:/Users/samfo/AndroidStudioProjects/Jobflix/app/src/main/res/drawable/ic_fingerprint.xml" value="0.5286458333333334" />
         <entry key="..\:/Users/samfo/AndroidStudioProjects/Jobflix/app/src/main/res/drawable/ic_home.xml" value="0.5286458333333334" />
         <entry key="..\:/Users/samfo/AndroidStudioProjects/Jobflix/app/src/main/res/drawable/ic_jobflix.xml" value="0.5286458333333334" />
         <entry key="..\:/Users/samfo/AndroidStudioProjects/Jobflix/app/src/main/res/drawable/ic_launcher_background.xml" value="0.5286458333333334" />
         <entry key="..\:/Users/samfo/AndroidStudioProjects/Jobflix/app/src/main/res/drawable/ic_launcher_foreground.xml" value="0.5286458333333334" />
+        <entry key="..\:/Users/samfo/AndroidStudioProjects/Jobflix/app/src/main/res/drawable/ic_lock.xml" value="0.5286458333333334" />
         <entry key="..\:/Users/samfo/AndroidStudioProjects/Jobflix/app/src/main/res/drawable/ic_movie_creation.xml" value="0.5286458333333334" />
         <entry key="..\:/Users/samfo/AndroidStudioProjects/Jobflix/app/src/main/res/drawable/ic_people_search.xml" value="0.5286458333333334" />
         <entry key="..\:/Users/samfo/AndroidStudioProjects/Jobflix/app/src/main/res/drawable/ic_person.xml" value="0.5286458333333334" />
@@ -33,10 +36,18 @@
         <entry key="..\:/Users/samfo/AndroidStudioProjects/Jobflix/app/src/main/res/layout/act_home.xml" value="0.5083333333333333" />
         <entry key="..\:/Users/samfo/AndroidStudioProjects/Jobflix/app/src/main/res/layout/act_people_details.xml" value="0.5083333333333333" />
         <entry key="..\:/Users/samfo/AndroidStudioProjects/Jobflix/app/src/main/res/layout/bottom_sheet_ep_detail.xml" value="0.5083333333333333" />
+        <entry key="..\:/Users/samfo/AndroidStudioProjects/Jobflix/app/src/main/res/layout/bottom_sheet_require_pin.xml" value="0.5083333333333333" />
+        <entry key="..\:/Users/samfo/AndroidStudioProjects/Jobflix/app/src/main/res/layout/dialog_request_pin.xml" value="0.5083333333333333" />
+        <entry key="..\:/Users/samfo/AndroidStudioProjects/Jobflix/app/src/main/res/layout/dialog_require_pin.xml" value="0.5083333333333333" />
         <entry key="..\:/Users/samfo/AndroidStudioProjects/Jobflix/app/src/main/res/layout/error_view.xml" value="0.5083333333333333" />
+        <entry key="..\:/Users/samfo/AndroidStudioProjects/Jobflix/app/src/main/res/layout/frag_edit_pin.xml" value="0.5083333333333333" />
         <entry key="..\:/Users/samfo/AndroidStudioProjects/Jobflix/app/src/main/res/layout/frag_favorites.xml" value="0.5083333333333333" />
         <entry key="..\:/Users/samfo/AndroidStudioProjects/Jobflix/app/src/main/res/layout/frag_home.xml" value="0.5083333333333333" />
+        <entry key="..\:/Users/samfo/AndroidStudioProjects/Jobflix/app/src/main/res/layout/frag_new_password.xml" value="0.5083333333333333" />
+        <entry key="..\:/Users/samfo/AndroidStudioProjects/Jobflix/app/src/main/res/layout/frag_new_pin.xml" value="0.5083333333333333" />
         <entry key="..\:/Users/samfo/AndroidStudioProjects/Jobflix/app/src/main/res/layout/frag_people_search.xml" value="0.5083333333333333" />
+        <entry key="..\:/Users/samfo/AndroidStudioProjects/Jobflix/app/src/main/res/layout/frag_request_pin.xml" value="0.5083333333333333" />
+        <entry key="..\:/Users/samfo/AndroidStudioProjects/Jobflix/app/src/main/res/layout/frag_require_pin.xml" value="0.5223958333333333" />
         <entry key="..\:/Users/samfo/AndroidStudioProjects/Jobflix/app/src/main/res/layout/item_episode.xml" value="0.5083333333333333" />
         <entry key="..\:/Users/samfo/AndroidStudioProjects/Jobflix/app/src/main/res/layout/item_favorite.xml" value="0.5083333333333333" />
         <entry key="..\:/Users/samfo/AndroidStudioProjects/Jobflix/app/src/main/res/layout/item_people.xml" value="0.5223958333333333" />

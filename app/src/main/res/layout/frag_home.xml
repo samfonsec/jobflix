@@ -13,13 +13,30 @@
         <androidx.appcompat.widget.SearchView
             android:id="@+id/svSearch"
             style="@style/Widget.AppCompat.SearchView.ActionBar"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="?actionBarSize"
+            android:layout_marginEnd="@dimen/small_dimen"
             android:visibility="gone"
             app:iconifiedByDefault="false"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/ivSecurity"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:queryHint="@string/series_search_hint"
+            tools:visibility="visible" />
+
+        <ImageView
+            android:id="@+id/ivSecurity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/x_small_dimen"
+            android:backgroundTint="@color/primaryColor"
+            android:padding="@dimen/default_dimen"
+            android:src="@drawable/ic_lock"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="@id/svSearch"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/svSearch"
+            tools:ignore="ContentDescription"
             tools:visibility="visible" />
 
         <androidx.recyclerview.widget.RecyclerView

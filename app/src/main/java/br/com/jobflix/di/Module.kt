@@ -1,5 +1,9 @@
 package br.com.jobflix.di
 
+import android.content.Context
+import android.content.SharedPreferences
+import androidx.security.crypto.EncryptedSharedPreferences
+import androidx.security.crypto.MasterKeys
 import br.com.jobflix.data.api.PeopleApi
 import br.com.jobflix.data.api.SearchApi
 import br.com.jobflix.data.api.SeriesApi
@@ -10,6 +14,7 @@ import br.com.jobflix.data.database.FavoriteDatabase
 import br.com.jobflix.data.repository.PeopleRepository
 import br.com.jobflix.data.repository.SearchRepository
 import br.com.jobflix.data.repository.SeriesRepository
+import br.com.jobflix.viewModel.auth.AuthViewModel
 import br.com.jobflix.viewModel.details.PeopleDetailsViewModel
 import br.com.jobflix.viewModel.details.SerieDetailsViewModel
 import br.com.jobflix.viewModel.main.FavoritesViewModel
@@ -26,6 +31,23 @@ import org.koin.core.scope.Scope
 import org.koin.dsl.module
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+
+val authModule = module {
+
+    fun provideSharedPreferences(context: Context): SharedPreferences {
+        val masterKeyAlias: String = MasterKeys.getOrCreate(MasterKeys.AES256_GCM_SPEC)
+
+        return EncryptedSharedPreferences.create(
+            "secret_shared_prefs",
+            masterKeyAlias,
+            context,
+            EncryptedSharedPreferences.PrefKeyEncryptionScheme.AES256_SIV,
+            EncryptedSharedPreferences.PrefValueEncryptionScheme.AES256_GCM
+        )
+    }
+
+    single { provideSharedPreferences(androidContext()) }
+}
 
 val seriesModule = module {
     single<SeriesApi> { getRetrofit().create(SeriesApi::class.java) }
@@ -49,6 +71,7 @@ val viewModels = module {
     viewModel { PeopleSearchViewModel(get()) }
     viewModel { SerieDetailsViewModel(get()) }
     viewModel { PeopleDetailsViewModel(get()) }
+    viewModel { AuthViewModel() }
 }
 
 val retrofitModule = module {

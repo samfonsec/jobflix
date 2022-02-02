@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@android:color/transparent">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/big_dimen"
+        android:background="@drawable/bg_rounded_dialog"
+        android:paddingVertical="@dimen/default_dimen">
+
+        <TextView
+            android:id="@+id/tvLabel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/default_dimen"
+            android:layout_marginVertical="@dimen/medium_dimen"
+            android:gravity="center"
+            android:text="@string/label_new_pin_info"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tiPassword"
+            style="@style/Widget.Jobflix.TextInput"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/default_dimen"
+            android:layout_marginTop="@dimen/medium_dimen"
+            android:layout_marginBottom="@dimen/default_dimen"
+            app:helperText="@string/pin_helper_text"
+            app:layout_constraintTop_toBottomOf="@id/tvLabel"
+            app:passwordToggleEnabled="true">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etPassword"
+                style="@style/Widget.Jobflix.EditText.Pin"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:backgroundTint="@color/primaryLightColor" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <CheckBox
+            android:id="@+id/cbEnableFingerprint"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/default_dimen"
+            android:layout_marginVertical="@dimen/default_dimen"
+            android:paddingStart="@dimen/small_dimen"
+            android:text="@string/enable_fingerprint"
+            app:layout_constraintBottom_toTopOf="@id/btNewPassword"
+            app:layout_constraintTop_toBottomOf="@id/tiPassword"
+            tools:ignore="RtlSymmetry" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btNewPassword"
+            style="@style/Widget.Jobflix.Button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/default_dimen"
+            android:backgroundTint="@color/primaryLightColor"
+            android:enabled="false"
+            android:text="@string/action_save_pin"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/cbEnableFingerprint"
+            app:layout_goneMarginTop="@dimen/big_dimen" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</FrameLayout>

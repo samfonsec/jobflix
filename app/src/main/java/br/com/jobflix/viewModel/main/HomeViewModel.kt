@@ -7,15 +7,16 @@ import br.com.jobflix.data.model.Serie
 import br.com.jobflix.data.repository.SearchRepository
 import br.com.jobflix.data.repository.SeriesRepository
 import br.com.jobflix.util.Constants.FIRST_PAGE
+import br.com.jobflix.util.Constants.KEY_AUTH_PIN
 import br.com.jobflix.util.extensions.isCanceling
-import br.com.jobflix.viewModel.base.BaseViewModel
+import br.com.jobflix.viewModel.base.BaseAuthViewModel
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 
 class HomeViewModel(
     private val seriesRepository: SeriesRepository,
     private val searchRepository: SearchRepository
-) : BaseViewModel() {
+) : BaseAuthViewModel() {
 
     private val onSeriesResult = MutableLiveData<List<Serie>>()
     private val onError = MutableLiveData<Boolean>()
@@ -62,4 +63,10 @@ class HomeViewModel(
     fun cancelLastJob() = currentJob?.cancel()
 
     fun getFirstPage() = onSeriesResult.postValue(firstPage)
+
+    fun removePin() {
+        sharedPreferences.edit().remove(KEY_AUTH_PIN).apply()
+        enableFingerprint(false)
+        skipPin()
+    }
 }

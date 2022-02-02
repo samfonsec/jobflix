@@ -22,4 +22,17 @@
 
     <string name="saved_as_favorite">Added to favorites list</string>
     <string name="removed_from_favorite">Removed from favorites list</string>
+    <string name="label_new_pin_first_view">Before you start browsing through the TV series, you can create a PIN to increase the app security. It will be required every time the app is opened.</string>
+    <string name="label_new_pin_info">You can create a PIN to increase the app security. It will be required every time the app is opened.</string>
+    <string name="label_remove_pin_info">If you want to remove the current PIN, please enter it below.</string>
+    <string name="label_require_pin_info">Insert your PIN to continue.</string>
+    <string name="action_save_pin">Save PIN</string>
+    <string name="action_remove_pin">Remove PIN</string>
+    <string name="action_skip">I don\'t want to use a PIN!</string>
+    <string name="pin_helper_text">The PIN must have 4 digits.</string>
+    <string name="invalid_pin">Invalid PIN</string>
+    <string name="biometric_dialog_title">Use your fingerprint</string>
+    <string name="action_insert_pin">Use PIN</string>
+    <string name="use_fingerprint">Access with fingerprint</string>
+    <string name="enable_fingerprint">Enable access with fingerprint</string>
 </resources>
