@@ -1,17 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="br.com.jobflix">
 
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:name=".JobflixApplication"
-        android:allowBackup="true"
+        android:allowBackup="false"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.Jobflix">
+        android:theme="@style/Theme.Jobflix"
+        tools:ignore="LockedOrientationActivity"
+        tools:replace="android:allowBackup">
 
         <activity
             android:name=".view.auth.AuthActivity"
