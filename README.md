@@ -1,6 +1,6 @@
 ## Jobflix
 
-**Jobflix** é um aplicativo moderno de listagem de séries de TV. Com ele, é possível explorar séries populares, buscar por título ou por atores e atrizes, visualizar detalhes completos das séries e ainda manter uma lista de favoritas. O app também conta com um sistema de segurança por PIN ou biometria.
+**Jobflix** é um aplicativo de listagem de séries de TV. Com ele, é possível explorar séries populares, buscar por título ou por atores e atrizes, visualizar detalhes completos das séries e ainda manter uma lista de favoritas. O app também conta com um sistema de segurança por PIN ou biometria.
 
 ---
 
