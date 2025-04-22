@@ -1,19 +1,8 @@
 ## Jobflix
 
-**Jobflix** é um aplicativo de listagem de séries de TV. Com ele, é possível explorar séries populares, buscar por título ou por atores e atrizes, visualizar detalhes completos das séries e ainda manter uma lista de favoritas. O app também conta com um sistema de segurança por PIN ou biometria.
+Aplicativo de listagem de séries de TV. Com ele, é possível explorar séries populares, buscar por título ou por atores e atrizes, visualizar detalhes completos das séries e ainda manter uma lista de favoritas. O app também conta com um sistema de segurança por PIN ou biometria.
 
----
-
-### Tecnologias e Frameworks Utilizados
-
-- **Kotlin**
-- **Arquitetura MVVM**
-- **Coroutines**para chamadas assíncronas e concorrência eficiente
-- **Koin**
-- **Room / Retrofit**
-- **BiometricPrompt**
-- **LiveData**
-- **Material Design Components**
+Nota: É um projeto mais antigo. A branch **updated** conta com algumas alterações que incluem boas práticas, organização dos packages e remoção de códigos desnecessários.
 
 ---
 
@@ -28,6 +17,20 @@
 
 ---
 
+### Tecnologias e Frameworks Utilizados
+
+- **Kotlin**
+- **Arquitetura MVVM**
+- **Coroutines**
+- **Koin**
+- **Room / Retrofit**
+- **BiometricPrompt**
+- **LiveData**
+- **Material Design Components**
+
+
+---
+
 ### Organização do Projeto
 
 br.com.jobflix/
@@ -39,7 +42,7 @@ br.com.jobflix/
 
 ---
 
-### Incompleto / A melhorar
+### Pontos a melhorar
 - Modo escuro
 - Suporte a múltiplos idiomas
 - Utilizar **Navigation Component** e **Jetpack Compose**
