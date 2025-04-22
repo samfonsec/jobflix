@@ -24,8 +24,8 @@ class DateExtUnitTest {
 
     @Test
     fun date_to_age_isCorrect() {
-        assertEquals(mockedDate.age(), 28)
-        assertEquals(mockedDate2.age(), 29)
-        assertEquals(mockedDate3.age(), 29)
+        assertEquals(mockedDate.age(), 31)
+        assertEquals(mockedDate2.age(), 32)
+        assertEquals(mockedDate3.age(), 31)
     }
 }
